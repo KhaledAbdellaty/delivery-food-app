@@ -34,13 +34,13 @@ Future<void> init() async {
 
 
   // Repositories
-  inj.registerFactory(() => AuthRepoImp(userLocalDataSourceImpl: inj()));
-  inj.registerLazySingleton<AuthRepo>(
+  //inj.registerFactory(() => AuthRepoImp(userLocalDataSourceImpl: inj()));
+  inj.registerLazySingleton<AuthRepoImp>(
       () => AuthRepoImp(userLocalDataSourceImpl: inj()));
 
   // DataSources
-  inj.registerFactory(() => UserLocalDataSourceImpl(sharedPreferences: inj()));
-  inj.registerLazySingleton<UserLocalDataSource>(
+ // inj.registerFactory(() => UserLocalDataSourceImpl(sharedPreferences: inj()));
+  inj.registerLazySingleton<UserLocalDataSourceImpl>(
       () => UserLocalDataSourceImpl(sharedPreferences: inj()));
 
   // inj.registerLazySingleton<PostRemoteDataSource>(

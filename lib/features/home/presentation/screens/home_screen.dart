@@ -11,6 +11,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // To set the floating action button in bottom when keyboard open
+      resizeToAvoidBottomInset: false,
+      /////////////////////////////////////////////////////////////////
+      extendBody: true,
       appBar: AppBar(
         elevation: 0.0,
         title: Text(
@@ -22,6 +26,7 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        focusNode: FocusScopeNode(canRequestFocus: true),
         onPressed: () {},
         child: const Icon(Icons.home),
       ),

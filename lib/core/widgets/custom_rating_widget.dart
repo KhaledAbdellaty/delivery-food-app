@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shoping_e_commerce/core/constants/colors.dart';
 
 class CustomRatingWidget extends StatelessWidget {
-  const CustomRatingWidget({Key? key}) : super(key: key);
+  final bool showTextRating;
+  const CustomRatingWidget({Key? key,required this.showTextRating}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +23,13 @@ class CustomRatingWidget extends StatelessWidget {
         const SizedBox(
           width: 16,
         ),
-        Text(
+        showTextRating?Text(
           '(124 Ratings)',
           style: TextStyle(
             color: placeholderColor,
             fontSize: 16,
           ),
-        )
+        ): Container()
       ],
     );
   }

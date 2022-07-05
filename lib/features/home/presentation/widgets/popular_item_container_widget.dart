@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shoping_e_commerce/core/widgets/custom_resturant_name_widget.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_subtitle_resturant_info_widget.dart';
-
-import '../../../../core/constants/colors.dart';
 import '../../../../core/constants/size_config.dart';
 import '../../../../core/widgets/custom_rating_widget.dart';
 
@@ -33,19 +32,13 @@ class PopularItemContainerWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                resturantName,
-                style: const TextStyle(
-                    color: primaryFontColor,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 20),
-              ),
+              CustomResturantNameWidget(resturantName: resturantName),
               const SizedBox(
                 height: 8,
               ),
               Row(
                 children: const [
-                  CustomRatingWidget(),
+                  CustomRatingWidget(showTextRating: true,),
                   SizedBox(
                     width: 10,
                   ),
