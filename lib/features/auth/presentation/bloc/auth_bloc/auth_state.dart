@@ -6,7 +6,9 @@ abstract class AuthState extends Equatable {
   @override
   List<Object> get props => [];
 }
-class AuthInit extends AuthState{}
+
+class AuthInit extends AuthState {}
+
 class AuthLoading extends AuthState {}
 
 class SuccessCreateOrSignInUserState extends AuthState {}
@@ -18,12 +20,4 @@ class ErrorCreateOrSignInUserState extends AuthState {
 
   @override
   List<Object> get props => [message];
-}
-
-class GetUserDataState extends AuthState {
-  final UserData user;
-
-  GetUserDataState(this.user);
-  @override
-  List<Object> get props => [user];
 }

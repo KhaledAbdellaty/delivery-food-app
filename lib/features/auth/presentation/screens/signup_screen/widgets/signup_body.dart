@@ -25,26 +25,11 @@ class SignUpBody extends StatelessWidget {
 
     return BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
-          // if (state is AuthLoading) {
-          //   showDialog(
-          //       context: context,
-          //       builder: (context) {
-          //         return const AlertDialog(
-          //           content: SizedBox(
-          //               width: 50,
-          //               height: 50,
-          //               child: CircularProgressIndicator()),
-          //         );
-          //       });
-          // }
           if (state is AuthLoading) {
-            showDialog(
-              context: context,
-              builder: (context) => const AlertDialog(
-                content: LoadingWidget(),
-              ),
-            );
-          } else if (state is ErrorCreateOrSignInUserState) {
+            SnackBarMessage()
+                .showSuccessMessage(message: 'Please wait ...', context: context);
+          }
+          if (state is ErrorCreateOrSignInUserState) {
             SnackBarMessage()
                 .showErrorMessage(message: state.message, context: context);
           } else if (state is SuccessCreateOrSignInUserState) {

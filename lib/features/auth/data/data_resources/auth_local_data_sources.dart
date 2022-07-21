@@ -5,9 +5,9 @@ abstract class UserLocalDataSource {
   String getCasheUserId();
 }
 
-class UserLocalDataSourceImpl extends UserLocalDataSource {
+class AuthLocalDataSourceImpl extends UserLocalDataSource {
   final SharedPreferences sharedPreferences;
-  UserLocalDataSourceImpl({required this.sharedPreferences});
+  AuthLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
   Future<void> casheUserId(String userId) async {

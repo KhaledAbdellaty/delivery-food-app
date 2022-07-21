@@ -57,7 +57,7 @@ class UserDataModel extends UserData {
           id: json['id'],
           name: json['name'],
           email: json['email'],
-          password: json['memberSince'],
+          password: json['password'],
           memberSince: json['memberSince'],
           cartProducts: cartProducts,
           favorites: favorites,
@@ -86,8 +86,8 @@ class UserDataModel extends UserData {
     final cartProducts = this.cartProducts.map((productMap) {
       return (productMap['product'] as ProductDataModel).toJson();
     }).toList();
-    final json = <String,dynamic>{
-       'id': id,
+    final json = <String, dynamic>{
+      'id': id,
       'email': email,
       'name': name,
       'password': password,

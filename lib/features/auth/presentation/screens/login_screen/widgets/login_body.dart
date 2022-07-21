@@ -64,6 +64,13 @@ class LoginBody extends StatelessWidget {
                 } else if (state is SuccessCreateOrSignInUserState) {
                   SnackBarMessage().showSuccessMessage(
                       message: 'Signed in ', context: context);
+
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    homeScreen,
+                    (route) => false,
+                    // arguments: context.read<AuthBloc>(),
+                  );
                 }
               },
               builder: (context, state) {
@@ -84,12 +91,10 @@ class LoginBody extends StatelessWidget {
               height: 20,
             ),
             buildText(
-              context: context,
-              title: 'Forgot your password?',
-              nextTitle: '',
-              onTap: () => Navigator.pushNamedAndRemoveUntil(
-                  context, homeScreen, (route) => false),
-            ),
+                context: context,
+                title: 'Forgot your password?',
+                nextTitle: '',
+                onTap: () {}),
             const SizedBox(
               height: 60,
             ),

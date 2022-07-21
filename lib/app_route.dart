@@ -1,30 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shoping_e_commerce/features/auth/data/data_resources/user_local_data_sources.dart';
-import 'package:shoping_e_commerce/features/auth/domain/uses_case/get_user_data.dart';
+import 'package:shoping_e_commerce/features/home/presentation/blocs/bottom_bar_navigator/bottom_bar_navigator_cubit.dart';
+import 'package:shoping_e_commerce/features/home/presentation/blocs/user_info/user_info_cubit.dart';
 import 'package:shoping_e_commerce/features/home/presentation/screens/home_screen.dart';
+import 'package:shoping_e_commerce/features/pick_photo/bloc/pickphoto_bloc.dart';
 import 'core/constants/strings/routes.dart';
-import 'features/auth/domain/uses_case/create_user.dart';
-import 'features/auth/domain/uses_case/sign_in_user.dart';
+import 'core/injection_container.dart';
 import 'features/auth/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'features/auth/presentation/screens/login_screen/login_screen.dart';
 import 'features/auth/presentation/screens/signup_screen/signup_screen.dart';
 import 'features/auth/presentation/screens/welcome_screen/welcome_screen.dart';
-import 'core/injection_container.dart' as inj;
 
 class AppRoute {
-  late CreateUserUsesCase createUserUsesCase;
-  late SignInUSerUsesCase signInUSerUsesCase;
-  late GetUserDataUsesCase getUserDataUsesCase;
-  late UserLocalDataSourceImpl userLocalDataSourceImpl;
-
-  AppRoute() {
-    userLocalDataSourceImpl =
-        UserLocalDataSourceImpl(sharedPreferences: inj.inj());
-    createUserUsesCase = CreateUserUsesCase(authRepo: inj.inj());
-    signInUSerUsesCase = SignInUSerUsesCase(authRepo: inj.inj());
-    getUserDataUsesCase = GetUserDataUsesCase(authRepo: inj.inj());
-  }
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       // case splashScreen:
@@ -35,29 +22,26 @@ class AppRoute {
         );
       case signUpScreen:
         return MaterialPageRoute(
-            builder: (context) => BlocProvider(
-                  create: (context) => AuthBloc(
-                      createUserUsesCase: inj.inj(),
-                      signInUSerUsesCase: inj.inj(),
-                      getUserDataUsesCase: inj.inj(),
-                      userLocalDataSourceImpl: inj.inj()),
+            builder: (context) => BlocProvider<AuthBloc>(
+                  create: (context) => inj<AuthBloc>(),
                   child: const SignUpScreen(),
                 ));
       case loginScreen:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => AuthBloc(
-                createUserUsesCase: inj.inj(),
-                signInUSerUsesCase: inj.inj(),
-                getUserDataUsesCase: inj.inj(),
-                userLocalDataSourceImpl: inj.inj()),
+          builder: (context) => BlocProvider<AuthBloc>(
+            create: (context) => inj<AuthBloc>(),
             child: const LoginScreen(),
           ),
         );
 
       case homeScreen:
         return MaterialPageRoute(
-          builder: ((context) => HomeScreen()),
+          builder: ((context) => MultiBlocProvider(providers: [
+                // BlocProvider.value(value: settings.arguments as AuthBloc),
+                BlocProvider(create: (_) => BottomBarNavigatorCubit()),
+                BlocProvider<UserInfoCubit>(
+                    create: (_) => inj<UserInfoCubit>()..getUserData())
+              ], child: HomeScreen())),
         );
 
       // case usersScreen:

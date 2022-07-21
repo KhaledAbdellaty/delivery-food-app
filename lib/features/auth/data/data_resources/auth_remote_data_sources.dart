@@ -1,21 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../model/user_model.dart';
 
-abstract class UserRemoteDataSources {
-  Future<UserDataModel> createUser(String email, String password, String name);
+abstract class AuthRemoteDataSources {
+  Future<Unit> createUser(String email, String password, String name);
   Future<UserCredential> signIn(String email, String password);
-  Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(String userId);
 }
 
-class UserRemoteDataSourcesImp implements UserRemoteDataSources {
-  UserRemoteDataSourcesImp._();
-  static final UserRemoteDataSourcesImp instance = UserRemoteDataSourcesImp._();
+class AuthRemoteDataSourcesImp implements AuthRemoteDataSources {
+  AuthRemoteDataSourcesImp._();
+  static final AuthRemoteDataSourcesImp instance = AuthRemoteDataSourcesImp._();
   final auth = FirebaseAuth.instance;
   @override
-  Future<UserDataModel> createUser(
-      String email, String password, String name) async {
+  Future<Unit> createUser(String email, String password, String name) async {
     final newUser = await auth.createUserWithEmailAndPassword(
         email: email, password: password);
     if (newUser.user!.displayName == null) {
@@ -35,8 +34,7 @@ class UserRemoteDataSourcesImp implements UserRemoteDataSources {
         .set(
           user.toJson(),
         );
-
-    return user;
+    return Future.value(unit);
   }
 
   @override
@@ -44,12 +42,5 @@ class UserRemoteDataSourcesImp implements UserRemoteDataSources {
     final user =
         await auth.signInWithEmailAndPassword(email: email, password: password);
     return user;
-  }
-
-  @override
-  Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(String userId) async {
-    final userData =
-        await FirebaseFirestore.instance.collection('users').doc(userId).get();
-    return userData;
   }
 }

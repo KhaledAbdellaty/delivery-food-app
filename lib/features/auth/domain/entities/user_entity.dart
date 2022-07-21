@@ -16,7 +16,7 @@ class UserData extends Equatable {
   final List<ProductData> favorites;
   final List<Map<String, dynamic>> cartProducts;
   final String memberSince;
-  UserData({
+  const UserData({
     required this.id,
     required this.name,
     required this.email,
