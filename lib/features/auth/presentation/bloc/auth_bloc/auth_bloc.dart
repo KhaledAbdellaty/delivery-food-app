@@ -14,7 +14,7 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final CreateUserUsesCase createUserUsesCase;
   final SignInUSerUsesCase signInUSerUsesCase;
-  final AuthLocalDataSourceImpl userLocalDataSourceImpl;
+  final UserLocalDataSourceImpl userLocalDataSourceImpl;
   AuthBloc(
       {required this.createUserUsesCase,
       required this.signInUSerUsesCase,

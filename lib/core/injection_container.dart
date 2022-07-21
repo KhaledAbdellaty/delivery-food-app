@@ -30,7 +30,8 @@ Future<void> init() async {
       userLocalDataSourceImpl: inj(),
     ),
   );
-  inj.registerFactory(() => UserInfoCubit(getUserDataUsesCase: inj(),updateUserImageUseCase: inj()));
+  inj.registerFactory(() =>
+      UserInfoCubit(getUserDataUsesCase: inj(), updateUserImageUseCase: inj()));
   inj.registerFactory(() => PickPhotoBloc(
       cameraUseCase: inj(),
       galleryUseCase: inj(),
@@ -57,8 +58,8 @@ Future<void> init() async {
 
   // DataSources
   // inj.registerFactory(() => UserLocalDataSourceImpl(sharedPreferences: inj()));
-  inj.registerLazySingleton<AuthLocalDataSourceImpl>(
-      () => AuthLocalDataSourceImpl(sharedPreferences: inj()));
+  inj.registerLazySingleton<UserLocalDataSourceImpl>(
+      () => UserLocalDataSourceImpl(sharedPreferences: inj()));
 
   // inj.registerLazySingleton<PostRemoteDataSource>(
   //     () => PostRemoteDataSourceImp(dio: inj()));

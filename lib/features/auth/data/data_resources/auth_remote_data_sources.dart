@@ -7,6 +7,7 @@ import '../model/user_model.dart';
 abstract class AuthRemoteDataSources {
   Future<Unit> createUser(String email, String password, String name);
   Future<UserCredential> signIn(String email, String password);
+  Future<Unit> logOut();
 }
 
 class AuthRemoteDataSourcesImp implements AuthRemoteDataSources {
@@ -42,5 +43,11 @@ class AuthRemoteDataSourcesImp implements AuthRemoteDataSources {
     final user =
         await auth.signInWithEmailAndPassword(email: email, password: password);
     return user;
+  }
+
+  @override
+  Future<Unit> logOut() async {
+    await auth.signOut();
+    return Future.value(unit);
   }
 }

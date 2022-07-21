@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shoping_e_commerce/core/constants/colors.dart';
 import 'package:shoping_e_commerce/core/injection_container.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_app_bar.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_buttons.dart';
-import 'package:shoping_e_commerce/core/widgets/custom_text_field.dart';
 import 'package:shoping_e_commerce/features/home/presentation/blocs/user_info/user_info_cubit.dart';
 import 'package:shoping_e_commerce/features/home/presentation/screens/profile/widgets/header_body_widget.dart';
 import 'package:shoping_e_commerce/features/pick_photo/bloc/pickphoto_bloc.dart';
@@ -36,7 +34,7 @@ class ProfileBody extends StatelessWidget {
                 ),
                 Expanded(
                     child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   child: Column(
                     children: [
                       myFormField(label: 'Name', value: state.userData.name),

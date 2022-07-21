@@ -22,7 +22,7 @@ class PickPhotoBloc extends Bloc<PickPhotoEvent, PickPhotoState> {
       : super(PickPhotoInitial()) {
     // on<PickinigPhotoFromGalleryEvent>();
     on<PickinigPhotoFromCameraEvent>(_pickingFromCameraEvent);
-     on<PickinigPhotoFromGalleryEvent>(_pickingFromGalleryEvent);
+    on<PickinigPhotoFromGalleryEvent>(_pickingFromGalleryEvent);
 
     //  on<PickPhotoEvent>((event, emit) async {
     //     if (event is PickinigPhotoFromCameraEvent) {
@@ -81,12 +81,14 @@ class PickPhotoBloc extends Bloc<PickPhotoEvent, PickPhotoState> {
   Future<void> _pickingFromGalleryEvent(
       PickinigPhotoFromGalleryEvent event, Emitter<PickPhotoState> emit) async {
     final result = await galleryUseCase();
-    result.fold((failur) => emit(PhotoPickError(message: failur.message)),
-        (r) async {
+    await result
+        .fold((failur) async => emit(PhotoPickError(message: failur.message)),
+            (r) async {
       emit(PhotoPicked());
       final image =
           await uploadImageToFireStorgeUseCase(imageName: event.imageName);
-      image.fold((l) => emit(PhotoPickError(message: l.message)), (imageUrl) {
+      await image.fold((l) async => emit(PhotoPickError(message: l.message)),
+          (imageUrl) {
         inj<UserInfoCubit>().updateUserImage(imageUrl);
         emit(PhotoUploaded(imageUrl: imageUrl));
       });

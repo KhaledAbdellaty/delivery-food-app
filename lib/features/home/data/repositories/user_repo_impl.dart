@@ -8,7 +8,7 @@ import 'package:shoping_e_commerce/features/home/domain/repositories/user_repo.d
 import '../../../auth/data/model/user_model.dart';
 
 class UserRepoImpl extends UserRepo {
-  final AuthLocalDataSourceImpl userLocalData;
+  final UserLocalDataSourceImpl userLocalData;
 
   UserRepoImpl({required this.userLocalData});
   @override

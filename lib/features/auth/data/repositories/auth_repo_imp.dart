@@ -7,7 +7,7 @@ import 'package:shoping_e_commerce/features/auth/data/model/user_model.dart';
 import '../../domain/repositories/auth_repo.dart';
 
 class AuthRepoImp implements AuthRepo {
-  final AuthLocalDataSourceImpl userLocalDataSourceImpl;
+  final UserLocalDataSourceImpl userLocalDataSourceImpl;
   AuthRepoImp({required this.userLocalDataSourceImpl});
 
   @override

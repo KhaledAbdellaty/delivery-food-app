@@ -2,12 +2,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class UserLocalDataSource {
   Future<void> casheUserId(String userId);
-  String getCasheUserId();
+  getCasheUserId();
 }
 
-class AuthLocalDataSourceImpl extends UserLocalDataSource {
+class UserLocalDataSourceImpl extends UserLocalDataSource {
   final SharedPreferences sharedPreferences;
-  AuthLocalDataSourceImpl({required this.sharedPreferences});
+  UserLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
   Future<void> casheUserId(String userId) async {
@@ -15,8 +15,11 @@ class AuthLocalDataSourceImpl extends UserLocalDataSource {
   }
 
   @override
-  String getCasheUserId() {
+  getCasheUserId() {
     final userId = sharedPreferences.getString('CASHED_USER_INFO');
-    return userId!;
+    if (userId != null) {
+      return userId;
+    }
+    return null;
   }
 }
