@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoping_e_commerce/features/home/presentation/blocs/bottom_bar_navigator/bottom_bar_navigator_cubit.dart';
 import 'package:shoping_e_commerce/features/home/presentation/blocs/user_info/user_info_cubit.dart';
+import 'package:shoping_e_commerce/features/home/presentation/screens/details_item_screen.dart';
 import 'package:shoping_e_commerce/features/home/presentation/screens/home_screen.dart';
 import 'core/constants/strings/routes.dart';
 import 'core/injection_container.dart';
@@ -42,6 +43,14 @@ class AppRoute {
                 BlocProvider<UserInfoCubit>(
                     create: (_) => inj<UserInfoCubit>()..getUserData())
               ], child: HomeScreen())),
+        );
+        case detailsItemScreen:
+        return MaterialPageRoute(
+          builder: ((context) => MultiBlocProvider(providers: [
+                 BlocProvider.value(value: settings.arguments as BottomBarNavigatorCubit),
+                //BlocProvider(create: (_) => BottomBarNavigatorCubit()),
+               
+              ], child: DetailsItemScreen())),
         );
 
       // case usersScreen:

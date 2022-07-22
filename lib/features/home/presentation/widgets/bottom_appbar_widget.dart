@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shoping_e_commerce/core/constants/colors.dart';
 import 'package:shoping_e_commerce/features/home/presentation/blocs/bottom_bar_navigator/bottom_bar_navigator_cubit.dart';
 
 class TabBarMaterialWidget extends StatelessWidget {
@@ -25,10 +24,13 @@ class TabBarMaterialWidget extends StatelessWidget {
             children: [
               _buildTabItem(
                 toolTip: 'Menu',
-                icon: Icon(
-                  Icons.menu,
-                  color: state.index == 0 ? mainColor : Colors.black,
-                ),
+                // icon: Icon(
+                //   Icons.menu,
+                //   color: state.index == 0 ? mainColor : Colors.black,
+                // ),
+                icon: Image.asset(state.index == 0
+                    ? 'assets/icons/menu-on.png'
+                    : 'assets/icons/menu-off.png'),
                 index: 0,
                 onPressed: () =>
                     BlocProvider.of<BottomBarNavigatorCubit>(context)
@@ -36,8 +38,9 @@ class TabBarMaterialWidget extends StatelessWidget {
               ),
               _buildTabItem(
                 toolTip: 'Offers',
-                icon: Icon(Icons.local_offer,
-                    color: state.index == 1 ? mainColor : Colors.black),
+                icon: Image.asset(state.index == 1
+                    ? 'assets/icons/offers-on.png'
+                    : 'assets/icons/offers-off.png'),
                 index: 1,
                 onPressed: () =>
                     BlocProvider.of<BottomBarNavigatorCubit>(context)
@@ -46,8 +49,9 @@ class TabBarMaterialWidget extends StatelessWidget {
               placeholder,
               _buildTabItem(
                 toolTip: 'Profile',
-                icon: Icon(Icons.person_off_outlined,
-                    color: state.index == 3 ? mainColor : Colors.black),
+                icon: Image.asset(state.index == 3
+                    ? 'assets/icons/profile-on.png'
+                    : 'assets/icons/profile-off.png'),
                 index: 3,
                 onPressed: () =>
                     BlocProvider.of<BottomBarNavigatorCubit>(context)
@@ -55,10 +59,9 @@ class TabBarMaterialWidget extends StatelessWidget {
               ),
               _buildTabItem(
                 toolTip: 'Settings',
-                icon: Icon(
-                  Icons.more,
-                  color: state.index == 4 ? mainColor : Colors.black,
-                ),
+                icon: Image.asset(state.index == 4
+                    ? 'assets/icons/more-on.png'
+                    : 'assets/icons/more-off.png'),
                 index: 4,
                 onPressed: () =>
                     BlocProvider.of<BottomBarNavigatorCubit>(context)
@@ -72,7 +75,7 @@ class TabBarMaterialWidget extends StatelessWidget {
   }
 
   Widget _buildTabItem(
-      {required Icon icon,
+      {required Widget icon,
       required int index,
       required String toolTip,
       required VoidCallback onPressed}) {

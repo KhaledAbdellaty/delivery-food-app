@@ -10,23 +10,21 @@ class MenuBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Column(
-          children: [
-            const CustomAppBar(title: 'Menu'),
-            const SizedBox(
-              height: 24,
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 35),
-              child: CustomSearchBarField(),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            SizedBox(
+      body: Column(
+        children: [
+          const CustomAppBar(title: 'Menu'),
+          const SizedBox(
+            height: 24,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 35),
+            child: CustomSearchBarField(),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Expanded(
+            child: SizedBox(
               height: 485,
               width: MediaQuery.of(context).size.width,
               child: Stack(
@@ -51,12 +49,12 @@ class MenuBody extends StatelessWidget {
                       left: 20,
                       top: 381,
                       right: 10,
-                      child: MenuBodyItem(cardShape: CardShape.rectangle)),
+                      child: MenuBodyItem(cardShape: CardShape.rotated)),
                 ],
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

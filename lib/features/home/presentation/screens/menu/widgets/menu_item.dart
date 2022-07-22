@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoping_e_commerce/core/constants/colors.dart';
+import 'package:shoping_e_commerce/core/constants/strings/routes.dart';
+import 'package:shoping_e_commerce/core/widgets/custom_buttons.dart';
+import 'package:shoping_e_commerce/features/home/presentation/screens/details_item_screen.dart';
+
+import '../../../blocs/bottom_bar_navigator/bottom_bar_navigator_cubit.dart';
 
 enum CardShape {
   rectangle,
@@ -33,7 +39,17 @@ class MenuBodyItem extends StatelessWidget {
             right: 12,
             top: 0,
             bottom: 0,
-            child: itemButton(),
+            child: CustomRoundedIconButton(
+                icon: const RotatedBox(
+                  quarterTurns: 2,
+                  child: const Icon(
+                    Icons.arrow_back,
+                    color: mainColor,
+                  ),
+                ),
+                onTap: () => Navigator.pushNamed(context, detailsItemScreen,
+                    arguments:
+                        BlocProvider.of<BottomBarNavigatorCubit>(context))),
           )
         ],
       ),
@@ -42,7 +58,7 @@ class MenuBodyItem extends StatelessWidget {
 
   Container itemInfo() {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(50),
@@ -50,10 +66,9 @@ class MenuBodyItem extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-              color: placeholderColor,
-              spreadRadius: 0.1,
-              offset: Offset(1, 3),
-              blurRadius: 5),
+              color: Colors.black.withOpacity(0.5),
+              offset: Offset(2, 3),
+              blurRadius: 7),
         ],
       ),
       child: SizedBox(
@@ -86,14 +101,20 @@ class MenuBodyItem extends StatelessWidget {
       return Container(
         height: 70,
         width: 70,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                  color: placeholderColor,
-                  spreadRadius: 0.1,
-                  offset: Offset(5, 0.1),
+                  color: Colors.black.withOpacity(0.8),
+                  spreadRadius: 0.5,
+                  offset: Offset(2.5, 0.1),
                   blurStyle: BlurStyle.normal,
                   blurRadius: 5),
+              BoxShadow(
+                  color: mainColor,
+                  spreadRadius: 5,
+                  offset: Offset(-30, 0.1),
+                  blurStyle: BlurStyle.normal,
+                  blurRadius: 15),
             ],
             color: Colors.black,
             shape: BoxShape.circle,
@@ -104,15 +125,21 @@ class MenuBodyItem extends StatelessWidget {
       return Container(
         height: 70,
         width: 70,
-        margin: EdgeInsets.only(top: 10, bottom: 10),
-        decoration: const BoxDecoration(
+        margin: const EdgeInsets.only(top: 10, bottom: 10),
+        decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                  color: placeholderColor,
-                  spreadRadius: 0.1,
-                  offset: Offset(5, 0.1),
+                  color: Colors.black.withOpacity(0.8),
+                  spreadRadius: 0.5,
+                  offset: Offset(2.5, 0.1),
                   blurStyle: BlurStyle.normal,
                   blurRadius: 5),
+              BoxShadow(
+                  color: mainColor,
+                  spreadRadius: 5,
+                  offset: Offset(-30, 0.1),
+                  blurStyle: BlurStyle.normal,
+                  blurRadius: 15),
             ],
             color: Colors.black,
             borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -120,53 +147,28 @@ class MenuBodyItem extends StatelessWidget {
                 image: AssetImage('assets/images/1.png'), fit: BoxFit.fill)),
       );
     } else if (cardShape == CardShape.rotated) {
-      return Container(
-        height: 70,
-        width: 70,
-        decoration: const BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                  color: placeholderColor,
-                  spreadRadius: 0.1,
-                  offset: Offset(5, 0.1),
-                  blurStyle: BlurStyle.normal,
-                  blurRadius: 5),
-            ],
-            color: Colors.black,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            image: DecorationImage(
-                image: AssetImage('assets/images/1.png'), fit: BoxFit.fill)),
+      return Transform.rotate(
+        angle: 2.2,
+        child: Container(
+          height: 70,
+          width: 70,
+          margin: const EdgeInsets.only(top: 10, bottom: 10),
+          decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withOpacity(0.8),
+                    spreadRadius: 0.5,
+                    offset: Offset(-2, -1),
+                    blurStyle: BlurStyle.normal,
+                    blurRadius: 5),
+              ],
+              color: Colors.black,
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              image: DecorationImage(
+                  image: AssetImage('assets/images/1.png'), fit: BoxFit.fill)),
+        ),
       );
     }
     return const Text('some thing went wrong ');
-  }
-
-  Container itemButton() {
-    return Container(
-      width: 33,
-      height: 33,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: placeholderColor,
-            spreadRadius: 0.1,
-            offset: Offset(2, 2),
-            blurRadius: 5,
-          ),
-        ],
-      ),
-      child: RotatedBox(
-        quarterTurns: 2,
-        child: InkWell(
-          onTap: () {},
-          child: const Icon(
-            Icons.arrow_back,
-            color: mainColor,
-          ),
-        ),
-      ),
-    );
   }
 }
