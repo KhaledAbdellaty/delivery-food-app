@@ -7,14 +7,15 @@ import 'package:shoping_e_commerce/features/auth/data/model/user_model.dart';
 import '../../domain/repositories/auth_repo.dart';
 
 class AuthRepoImp implements AuthRepo {
-  final UserLocalDataSourceImpl userLocalDataSourceImpl;
-  AuthRepoImp({required this.userLocalDataSourceImpl});
+  final AuthLocalDataSourceImpl authLocalDataSourceImpl;
+  AuthRepoImp({required this.authLocalDataSourceImpl});
 
+// Create User Repo
   @override
   Future<Either<Failures, Unit>> createNewUser(
       String email, String password, String name) async {
     try {
-      final createUser = await AuthRemoteDataSourcesImp.instance
+      await AuthRemoteDataSourcesImpl.instance
           .createUser(email, password, name);
       return const Right(unit);
     } on FirebaseAuthException catch (e) {
@@ -22,13 +23,15 @@ class AuthRepoImp implements AuthRepo {
     }
   }
 
+// Sign In Repo
   @override
   Future<Either<Failures, UserDataModel>> signIn(
-      String email, String password) async {
+    String email,
+    String password,
+  ) async {
     try {
       final signIn =
-          await AuthRemoteDataSourcesImp.instance.signIn(email, password);
-      //await userLocalDataSourceImpl.casheUserId(signIn.user!.uid);
+          await AuthRemoteDataSourcesImpl.instance.signIn(email, password);
       final UserDataModel user = UserDataModel(
         id: signIn.user!.uid,
         name: signIn.user!.displayName!,
@@ -36,9 +39,21 @@ class AuthRepoImp implements AuthRepo {
         password: password,
         memberSince: signIn.user!.metadata.creationTime.toString(),
       );
-      await userLocalDataSourceImpl.casheUserId(user.id);
+      await authLocalDataSourceImpl.casheUserId(user.id);
       return Right(user);
     } on FirebaseAuthException catch (e) {
+      return Left(LoginFailure.fromCode(e.code));
+    }
+  }
+
+// Sign Out Repo
+  @override
+  Future<Either<Failures, Unit>> signOut() async {
+    try {
+      await AuthRemoteDataSourcesImpl.instance.signOut();
+      return const Right(unit);
+    } on FirebaseAuthException catch (e) {
+      //Todo signOutFailure
       return Left(LoginFailure.fromCode(e.code));
     }
   }

@@ -15,8 +15,9 @@ class UserInfoCubit extends Cubit<UserInfoState> {
 
   Future<void> getUserData() async {
     final userData = await getUserDataUsesCase.call();
-    userData.fold((l)async => emit(state.copyWith(userstatus: UserStatus.userError)),
-        (r)async{
+    userData.fold(
+        (l) async => emit(state.copyWith(userstatus: UserStatus.userError)),
+        (r) async {
       emit(state.copyWith(userData: r));
       emit(state.copyWith(userstatus: UserStatus.userLoaded));
     });
@@ -24,10 +25,12 @@ class UserInfoCubit extends Cubit<UserInfoState> {
 
   Future<void> updateUserImage(String imageUrl) async {
     final userImage = await updateUserImageUseCase(imageUrl: imageUrl);
-    userImage
-        .fold((l)async=> emit(state.copyWith(userstatus: UserStatus.userError)),
-            (r) async {
+    userImage.fold(
+        (l) async => emit(state.copyWith(userstatus: UserStatus.userError)),
+        (r) async {
+      emit(state.copyWith(userstatus: UserStatus.userLoading));
       await getUserData();
+      emit(state.copyWith(userstatus: UserStatus.userLoaded));
     });
   }
 }

@@ -13,6 +13,10 @@ class PhotoPicked extends PickPhotoState {
   List<Object?> get props => [];
 }
 
+class PhotoLoading extends PickPhotoState{
+  @override
+  List<Object?> get props => [];
+}
 class PhotoPickError extends PickPhotoState {
   final String message;
 

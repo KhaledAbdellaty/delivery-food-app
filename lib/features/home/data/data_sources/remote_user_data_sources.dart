@@ -4,6 +4,7 @@ abstract class UserRemoteDataSources {
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(String userId);
   Future<void> updateUserImage(
       {required String imageUrl, required String userId});
+ 
 }
 
 class UserRemoteDataSourcesImpl extends UserRemoteDataSources {
@@ -26,4 +27,6 @@ class UserRemoteDataSourcesImpl extends UserRemoteDataSources {
         .doc(userId)
         .update({'imageUrl': imageUrl});
   }
+
+
 }

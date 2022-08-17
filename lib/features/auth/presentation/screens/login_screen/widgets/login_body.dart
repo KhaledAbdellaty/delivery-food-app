@@ -23,7 +23,7 @@ class LoginBody extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         child: ListView(
-          // physics: const NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           children: [
             const HeadLineText(
@@ -69,7 +69,7 @@ class LoginBody extends StatelessWidget {
                     context,
                     homeScreen,
                     (route) => false,
-                    // arguments: context.read<AuthBloc>(),
+                    //arguments: context.read<AuthBloc>(),
                   );
                 }
               },

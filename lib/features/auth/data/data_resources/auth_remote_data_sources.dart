@@ -7,12 +7,13 @@ import '../model/user_model.dart';
 abstract class AuthRemoteDataSources {
   Future<Unit> createUser(String email, String password, String name);
   Future<UserCredential> signIn(String email, String password);
-  Future<Unit> logOut();
+  Future<Unit> signOut();
 }
 
-class AuthRemoteDataSourcesImp implements AuthRemoteDataSources {
-  AuthRemoteDataSourcesImp._();
-  static final AuthRemoteDataSourcesImp instance = AuthRemoteDataSourcesImp._();
+class AuthRemoteDataSourcesImpl implements AuthRemoteDataSources {
+  AuthRemoteDataSourcesImpl._();
+  static final AuthRemoteDataSourcesImpl instance =
+      AuthRemoteDataSourcesImpl._();
   final auth = FirebaseAuth.instance;
   @override
   Future<Unit> createUser(String email, String password, String name) async {
@@ -46,7 +47,7 @@ class AuthRemoteDataSourcesImp implements AuthRemoteDataSources {
   }
 
   @override
-  Future<Unit> logOut() async {
+  Future<Unit> signOut() async {
     await auth.signOut();
     return Future.value(unit);
   }

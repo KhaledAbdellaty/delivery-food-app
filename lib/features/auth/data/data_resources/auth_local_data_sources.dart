@@ -1,13 +1,14 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class UserLocalDataSource {
+abstract class AuthLocalDataSource {
   Future<void> casheUserId(String userId);
   getCasheUserId();
+  Future<void> deleteUser();
 }
 
-class UserLocalDataSourceImpl extends UserLocalDataSource {
+class AuthLocalDataSourceImpl extends AuthLocalDataSource {
   final SharedPreferences sharedPreferences;
-  UserLocalDataSourceImpl({required this.sharedPreferences});
+  AuthLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
   Future<void> casheUserId(String userId) async {
@@ -21,5 +22,11 @@ class UserLocalDataSourceImpl extends UserLocalDataSource {
       return userId;
     }
     return null;
+  }
+
+  @override
+  deleteUser() async {
+    //var userId = getCasheUserId();
+    await sharedPreferences.remove('CASHED_USER_INFO');
   }
 }

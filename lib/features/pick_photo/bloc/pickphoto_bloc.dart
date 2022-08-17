@@ -90,6 +90,7 @@ class PickPhotoBloc extends Bloc<PickPhotoEvent, PickPhotoState> {
       await image.fold((l) async => emit(PhotoPickError(message: l.message)),
           (imageUrl) {
         inj<UserInfoCubit>().updateUserImage(imageUrl);
+        //emit(PhotoLoading());
         emit(PhotoUploaded(imageUrl: imageUrl));
       });
     });

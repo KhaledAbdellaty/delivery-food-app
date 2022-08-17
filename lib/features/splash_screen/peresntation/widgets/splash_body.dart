@@ -60,7 +60,7 @@ class _SplashBodyState extends State<SplashBody>
     Future.delayed(
       const Duration(seconds: 3),
       () {
-        if (inj<UserLocalDataSourceImpl>().getCasheUserId() == null) {
+        if (inj<AuthLocalDataSourceImpl>().getCasheUserId() == null) {
           Navigator.pushNamedAndRemoveUntil(
               context, welcomeScreen, (route) => false);
         } else {

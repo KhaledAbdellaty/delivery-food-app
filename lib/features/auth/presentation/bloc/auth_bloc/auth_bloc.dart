@@ -1,30 +1,30 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:shoping_e_commerce/features/auth/data/data_resources/auth_local_data_sources.dart';
 import 'package:shoping_e_commerce/features/auth/domain/entities/user_entity.dart';
 import 'package:shoping_e_commerce/features/auth/domain/uses_case/create_user.dart';
 import 'package:shoping_e_commerce/features/auth/domain/uses_case/sign_in_user.dart';
 
 import '../../../../../core/error/failure.dart';
+import '../../../domain/uses_case/sign_out_user.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final CreateUserUsesCase createUserUsesCase;
-  final SignInUSerUsesCase signInUSerUsesCase;
-  final UserLocalDataSourceImpl userLocalDataSourceImpl;
-  AuthBloc(
-      {required this.createUserUsesCase,
-      required this.signInUSerUsesCase,
-      required this.userLocalDataSourceImpl})
-      : super(AuthInit()) {
+  final CreateUseCase createUseCase;
+  final SignInUseCase signInUseCase;
+  final SignOutUseCase signOutUseCase;
+  AuthBloc({
+    required this.createUseCase,
+    required this.signInUseCase,
+    required this.signOutUseCase,
+  }) : super(AuthInit()) {
     on<AuthEvent>((event, emit) async {
       if (event is CreateUserEvent) {
         emit(AuthLoading());
         final newUser =
-            await createUserUsesCase(event.email, event.password, event.name);
+            await createUseCase(event.email, event.password, event.name);
         newUser.fold(
             (failure) => emit(
                   ErrorCreateOrSignInUserState(
@@ -34,8 +34,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             (r) => emit(SuccessCreateOrSignInUserState()));
       } else if (event is SignInUserEvent) {
         emit(AuthLoading());
-        final user = await signInUSerUsesCase(event.email, event.password);
+        final user = await signInUseCase(event.email, event.password);
         emit(_emitFailureOrSucces(user));
+      } else if (event is SignOutEvent) {
+        await signOutUseCase();
+        emit(AuthLoading());
+
+        emit(SignOutState());
       }
     });
   }

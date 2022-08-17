@@ -21,3 +21,5 @@ class ErrorCreateOrSignInUserState extends AuthState {
   @override
   List<Object> get props => [message];
 }
+
+class SignOutState extends AuthState {}

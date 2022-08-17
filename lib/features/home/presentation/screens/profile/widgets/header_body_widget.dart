@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shoping_e_commerce/core/constants/strings/routes.dart';
+import 'package:shoping_e_commerce/core/widgets/custom_loading_widget.dart';
+import 'package:shoping_e_commerce/features/auth/presentation/bloc/auth_bloc/auth_bloc.dart';
 
 import '../../../../../../core/constants/colors.dart';
 import '../../../../../pick_photo/bloc/pickphoto_bloc.dart';
@@ -13,49 +16,57 @@ class HeaderProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 188,
-      width: 116,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          BlocBuilder<PickPhotoBloc, PickPhotoState>(
-            builder: (context, photo) {
-              if (photo is PhotoUploaded) {
-                return _profileImage(photo.imageUrl, context,
-                    photoName: userName);
-              }
-              return _profileImage(imageUrl, context, photoName: userName);
-            },
-          ),
-          const SizedBox(
-            height: 18,
-          ),
-          _editProfile(),
-          const SizedBox(
-            height: 11,
-          ),
-          Text(
-            'Hi there $userName!',
-            style: const TextStyle(
-                color: primaryFontColor,
-                fontSize: 16,
-                fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 4,
-          ),
-          InkWell(
-            onTap: () {},
-            child: const Text(
-              'Sign Out',
-              style: TextStyle(
-                  color: secondaryFontColor,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400),
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is SignOutState) {
+          Navigator.pushNamedAndRemoveUntil(context, loginScreen, (_) => false);
+        }
+      },
+      child: SizedBox(
+        height: 188,
+        width: 116,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            BlocBuilder<PickPhotoBloc, PickPhotoState>(
+              builder: (context, photo) {
+                if (photo is PhotoUploaded) {
+                  return _profileImage(photo.imageUrl, context,
+                      photoName: userName);
+                }
+                return _profileImage(imageUrl, context, photoName: userName);
+              },
             ),
-          ),
-        ],
+            const SizedBox(
+              height: 18,
+            ),
+            _editProfile(),
+            const SizedBox(
+              height: 11,
+            ),
+            Text(
+              'Hi there $userName!',
+              style: const TextStyle(
+                  color: primaryFontColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 4,
+            ),
+            InkWell(
+              onTap: () =>
+                  BlocProvider.of<AuthBloc>(context)..add(SignOutEvent()),
+              child: const Text(
+                'Sign Out',
+                style: TextStyle(
+                    color: secondaryFontColor,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

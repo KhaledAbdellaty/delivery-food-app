@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shoping_e_commerce/core/widgets/custom_loading_widget.dart';
-
 import '../../../../../../core/constants/colors.dart';
 import '../../../../../../core/constants/strings/routes.dart';
 import '../../../../../../core/widgets/custom_buttons.dart';

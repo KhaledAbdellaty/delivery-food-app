@@ -38,18 +38,16 @@ class AppRoute {
       case homeScreen:
         return MaterialPageRoute(
           builder: ((context) => MultiBlocProvider(providers: [
-                // BlocProvider.value(value: settings.arguments as AuthBloc),
                 BlocProvider(create: (_) => BottomBarNavigatorCubit()),
                 BlocProvider<UserInfoCubit>(
                     create: (_) => inj<UserInfoCubit>()..getUserData())
               ], child: HomeScreen())),
         );
-        case detailsItemScreen:
+      case detailsItemScreen:
         return MaterialPageRoute(
           builder: ((context) => MultiBlocProvider(providers: [
-                 BlocProvider.value(value: settings.arguments as BottomBarNavigatorCubit),
-                //BlocProvider(create: (_) => BottomBarNavigatorCubit()),
-               
+                BlocProvider.value(
+                    value: settings.arguments as BottomBarNavigatorCubit),
               ], child: DetailsItemScreen())),
         );
 
