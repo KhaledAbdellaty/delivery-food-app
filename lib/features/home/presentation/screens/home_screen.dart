@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
               ),
               child: state.screens[state.index]['body'],
             ),
-            bottomNavigationBar: TabBarMaterialWidget(),
+            bottomNavigationBar: const TabBarMaterialWidget(),
           );
         },
       );

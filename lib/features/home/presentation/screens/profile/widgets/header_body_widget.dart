@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoping_e_commerce/core/constants/strings/routes.dart';
@@ -78,10 +79,19 @@ class HeaderProfileWidget extends StatelessWidget {
       width: 102,
       child: Stack(
         children: [
-          CircleAvatar(
-            backgroundImage: NetworkImage(image),
-            radius: 80,
-            backgroundColor: Colors.white,
+          ClipRRect(
+            child: CachedNetworkImage(
+              key: UniqueKey(),
+              imageUrl: image,
+              fit: BoxFit.cover,
+              height: 110,
+              width: 110,
+              placeholder: (context, url) => const LoadingWidget(),
+              errorWidget: (context, url, error) => Container(
+                color: Colors.black,
+              ),
+            ),
+            borderRadius: BorderRadius.circular(50),
           ),
           Container(
             alignment: Alignment.bottomCenter,

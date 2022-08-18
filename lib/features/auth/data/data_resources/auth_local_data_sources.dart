@@ -26,7 +26,6 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
 
   @override
   deleteUser() async {
-    //var userId = getCasheUserId();
     await sharedPreferences.remove('CASHED_USER_INFO');
   }
 }
