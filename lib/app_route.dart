@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shoping_e_commerce/features/google_map/presentation/blocs/cubit/google_map_cubit.dart';
+import 'package:shoping_e_commerce/features/google_map/presentation/screens/google_map_screen.dart';
 import 'package:shoping_e_commerce/features/home/presentation/blocs/bottom_bar_navigator/bottom_bar_navigator_cubit.dart';
 import 'package:shoping_e_commerce/features/home/presentation/blocs/user_info/user_info_cubit.dart';
-import 'package:shoping_e_commerce/features/home/presentation/screens/details_item_screen.dart';
+import 'package:shoping_e_commerce/features/home/presentation/screens/details_item_screen/details_item_screen.dart';
 import 'package:shoping_e_commerce/features/home/presentation/screens/home_screen.dart';
 import 'core/constants/strings/routes.dart';
 import 'core/injection_container.dart';
@@ -49,6 +51,17 @@ class AppRoute {
                 BlocProvider.value(
                     value: settings.arguments as BottomBarNavigatorCubit),
               ], child: DetailsItemScreen())),
+        );
+
+      case googleMapScreen:
+        return MaterialPageRoute(
+          builder: ((context) => MultiBlocProvider(
+                providers: [
+                  BlocProvider<GoogleMapCubit>(
+                      create: (_) => inj<GoogleMapCubit>()..isLocationEnabled()),
+                ],
+                child: GoogleMapScreen(),
+              )),
         );
 
       // case usersScreen:

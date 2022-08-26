@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoping_e_commerce/core/constants/colors.dart';
 import 'package:shoping_e_commerce/core/constants/strings/routes.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_buttons.dart';
 
-import '../widgets/bottom_appbar_widget.dart';
+import '../../widgets/bottom_appbar_widget.dart';
 
 class DetailsItemScreen extends StatefulWidget {
   const DetailsItemScreen({Key? key}) : super(key: key);
@@ -347,7 +348,7 @@ class _DetailsItemScreenState extends State<DetailsItemScreen> {
       offset: offset,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
+        children: const [
           Text(
             'EGP. 750',
             style: TextStyle(
@@ -372,8 +373,30 @@ class _DetailsItemScreenState extends State<DetailsItemScreen> {
       offset: Offset(MediaQuery.of(context).size.width / 1.3,
           MediaQuery.of(context).size.height / 3.1),
       child: InkWell(
-          onTap: () {},
-          child: Image.asset('assets/icons/Add to favorites button.png')),
+        splashColor: primaryFontColor,
+        onTap: () {},
+        // child: Image.asset('assets/icons/Add to favorites button.png'),
+        child: Stack(
+          children: [
+            Opacity(
+              opacity: 0.5,
+              child: ColorFiltered(
+                colorFilter: const ColorFilter.mode(
+                    secondaryFontColor, BlendMode.srcATop),
+                child: SvgPicture.asset(
+                  'assets/icons/Add to favorites button1.svg',
+                ),
+              ),
+            ),
+            Positioned(
+              top: -3,
+              child: SvgPicture.asset(
+                'assets/icons/Add to favorites button1.svg',
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 

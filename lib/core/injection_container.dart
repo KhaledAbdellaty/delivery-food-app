@@ -5,6 +5,11 @@ import 'package:shoping_e_commerce/features/auth/data/data_resources/auth_local_
 import 'package:shoping_e_commerce/features/auth/data/data_resources/auth_remote_data_sources.dart';
 import 'package:shoping_e_commerce/features/auth/data/repositories/auth_repo_imp.dart';
 import 'package:shoping_e_commerce/features/auth/domain/uses_case/create_user.dart';
+import 'package:shoping_e_commerce/features/google_map/domain/uses_case/get_current_location.dart';
+import 'package:shoping_e_commerce/features/google_map/domain/uses_case/location_service_enable.dart';
+import 'package:shoping_e_commerce/features/google_map/domain/uses_case/location_service_permission.dart';
+import 'package:shoping_e_commerce/features/google_map/presentation/blocs/cubit/google_map_cubit.dart';
+import 'package:shoping_e_commerce/features/google_map/services/repositiories/google_map_repo_impl.dart';
 import 'package:shoping_e_commerce/features/home/data/repositories/user_repo_impl.dart';
 import 'package:shoping_e_commerce/features/home/domain/uses_cases/get_user_data.dart';
 import 'package:shoping_e_commerce/features/auth/domain/uses_case/sign_in_user.dart';
@@ -39,6 +44,11 @@ Future<void> init() async {
       galleryUseCase: inj(),
       uploadImageToFireStorgeUseCase: inj()));
 
+  inj.registerFactory(() => GoogleMapCubit(
+      getCurrentLocationUseCase: inj(),
+      isLocationServiceEnabledUseCase: inj(),
+      locationServicePermissionUseCase: inj()));
+
   ///UsesCases
 //user Uses Case
   inj.registerLazySingleton(() => CreateUseCase(authRepo: inj()));
@@ -51,6 +61,12 @@ Future<void> init() async {
   inj.registerLazySingleton(
       () => UploadImageToFireStorgeUseCase(pickPhotoRepoImpl: inj()));
   inj.registerLazySingleton(() => UpdateUserImageUseCase(userRepoImpl: inj()));
+  inj.registerLazySingleton(
+      () => GetCurrentLocationUseCase(googleMapRepoImpl: inj()));
+  inj.registerLazySingleton(
+      () => IsLocationServiceEnabledUseCase(googleMapRepoImpl: inj()));
+  inj.registerLazySingleton(
+      () => LocationServicePermissionUseCase(googleMapRepoImpl: inj()));
 
   // Repositories
   //inj.registerFactory(() => AuthRepoImp(userLocalDataSourceImpl: inj()));
@@ -60,6 +76,7 @@ Future<void> init() async {
       () => UserRepoImpl(userLocalData: inj()));
 
   inj.registerLazySingleton<PickPhotoRepoImpl>(() => PickPhotoRepoImpl());
+  inj.registerLazySingleton<GoogleMapRepoImpl>(() => GoogleMapRepoImpl());
 
   // DataSources
   // inj.registerFactory(() => UserLocalDataSourceImpl(sharedPreferences: inj()));
