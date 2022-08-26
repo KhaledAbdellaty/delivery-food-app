@@ -7,6 +7,7 @@ import 'package:shoping_e_commerce/features/home/presentation/blocs/user_info/us
 import 'package:shoping_e_commerce/features/home/presentation/screens/profile/widgets/header_body_widget.dart';
 import 'package:shoping_e_commerce/features/pick_photo/bloc/pickphoto_bloc.dart';
 
+import '../../../../../core/constants/strings/routes.dart';
 import '../../../../auth/presentation/bloc/auth_bloc/auth_bloc.dart';
 
 class ProfileBody extends StatelessWidget {
@@ -63,7 +64,11 @@ class ProfileBody extends StatelessWidget {
                         const SizedBox(
                           height: 17,
                         ),
-                        FilledButton(text: 'Save', onPressed: () {}),
+                        FilledButton(
+                            text: 'Save',
+                            onPressed: () {
+                              Navigator.pushNamed(context, googleMapScreen);
+                            }),
                         const SizedBox(
                           height: 100,
                         ),

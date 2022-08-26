@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoping_e_commerce/features/home/presentation/blocs/bottom_bar_navigator/bottom_bar_navigator_cubit.dart';
 
 class TabBarMaterialWidget extends StatelessWidget {
-  const TabBarMaterialWidget({Key? key}) : super(key: key);
+
+  const TabBarMaterialWidget({Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +25,18 @@ class TabBarMaterialWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _buildTabItem(
-                toolTip: 'Menu',
-                // icon: Icon(
-                //   Icons.menu,
-                //   color: state.index == 0 ? mainColor : Colors.black,
-                // ),
-                icon: Image.asset(state.index == 0
-                    ? 'assets/icons/menu-on.png'
-                    : 'assets/icons/menu-off.png'),
-                index: 0,
-                onPressed: () =>
-                    BlocProvider.of<BottomBarNavigatorCubit>(context)
-                        .navigateToScreen(0),
-              ),
+                  toolTip: 'Menu',
+                  // icon: Icon(
+                  //   Icons.menu,
+                  //   color: state.index == 0 ? mainColor : Colors.black,
+                  // ),
+                  icon: Image.asset(state.index == 0
+                      ? 'assets/icons/menu-on.png'
+                      : 'assets/icons/menu-off.png'),
+                  index: 0,
+                  onPressed: () =>
+                      BlocProvider.of<BottomBarNavigatorCubit>(context)
+                          .navigateToScreen(0)),
               _buildTabItem(
                 toolTip: 'Offers',
                 icon: Image.asset(state.index == 1

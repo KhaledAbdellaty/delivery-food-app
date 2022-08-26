@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoping_e_commerce/core/constants/strings/routes.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_loading_widget.dart';
 import 'package:shoping_e_commerce/features/auth/presentation/bloc/auth_bloc/auth_bloc.dart';
-
 import '../../../../../../core/constants/colors.dart';
 import '../../../../../pick_photo/bloc/pickphoto_bloc.dart';
 

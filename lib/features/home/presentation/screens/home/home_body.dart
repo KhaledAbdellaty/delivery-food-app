@@ -6,7 +6,7 @@ import 'package:shoping_e_commerce/features/home/presentation/blocs/user_info/us
 import 'package:shoping_e_commerce/features/home/presentation/widgets/most_popular_resturants_widget.dart';
 import 'package:shoping_e_commerce/features/home/presentation/widgets/popular_resturant_widget.dart';
 import 'package:shoping_e_commerce/features/home/presentation/widgets/recent_items_widget.dart';
-import '../widgets/category_list_widget.dart';
+import '../../widgets/category_list_widget.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({Key? key}) : super(key: key);
