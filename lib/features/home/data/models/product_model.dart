@@ -1,6 +1,6 @@
-import 'package:shoping_e_commerce/features/products/domain/entities/category_entity.dart';
-import 'package:shoping_e_commerce/features/products/domain/entities/product_entity.dart';
 
+import '../../domain/entities/category_entity.dart';
+import '../../domain/entities/product_entity.dart';
 import 'category_model.dart';
 
 class ProductDataModel extends ProductData {
@@ -42,7 +42,7 @@ class ProductDataModel extends ProductData {
         category:
             CategoryDataModel.fromJson(json['category'] as Map<String, dynamic>?),
         brand: json['brand'],
-        images:   toStringList(!json['images'] as List<dynamic>),
+        images:   toStringList(json['images'] as List<dynamic>),
         color: json['color'],
       );
     }

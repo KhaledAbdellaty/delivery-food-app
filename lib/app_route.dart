@@ -12,6 +12,7 @@ import 'features/auth/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'features/auth/presentation/screens/login_screen/login_screen.dart';
 import 'features/auth/presentation/screens/signup_screen/signup_screen.dart';
 import 'features/auth/presentation/screens/welcome_screen/welcome_screen.dart';
+import 'features/home/presentation/blocs/products/products_cubit.dart';
 import 'features/splash_screen/peresntation/splash_screen.dart';
 
 class AppRoute {
@@ -41,6 +42,8 @@ class AppRoute {
         return MaterialPageRoute(
           builder: ((context) => MultiBlocProvider(providers: [
                 BlocProvider(create: (_) => BottomBarNavigatorCubit()),
+                BlocProvider(
+                    create: (_) => inj<ProductsCubit>()..getAllCategories()),
                 BlocProvider<UserInfoCubit>(
                     create: (_) => inj<UserInfoCubit>()..getUserData())
               ], child: HomeScreen())),
@@ -50,6 +53,9 @@ class AppRoute {
           builder: ((context) => MultiBlocProvider(providers: [
                 BlocProvider.value(
                     value: settings.arguments as BottomBarNavigatorCubit),
+                BlocProvider<UserInfoCubit>(
+                  create: (_) => inj<UserInfoCubit>(),
+                )
               ], child: DetailsItemScreen())),
         );
 
@@ -58,7 +64,8 @@ class AppRoute {
           builder: ((context) => MultiBlocProvider(
                 providers: [
                   BlocProvider<GoogleMapCubit>(
-                      create: (_) => inj<GoogleMapCubit>()..isLocationEnabled()),
+                      create: (_) =>
+                          inj<GoogleMapCubit>()..isLocationEnabled()),
                 ],
                 child: GoogleMapScreen(),
               )),

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoping_e_commerce/core/constants/colors.dart';
+import 'package:shoping_e_commerce/features/home/domain/entities/category_entity.dart';
+import 'package:shoping_e_commerce/features/home/presentation/blocs/products/products_cubit.dart';
 
 class CategoryListWidget extends StatelessWidget {
   const CategoryListWidget({Key? key}) : super(key: key);
@@ -8,19 +11,24 @@ class CategoryListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 120,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: 7,
-        itemBuilder: (context, index) {
-          return _buildListItem();
+      child: BlocBuilder<ProductsCubit, ProductsState>(
+        builder: (context, state) {
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: state.categoryList.length,
+            itemBuilder: (context, index) {
+              return _buildListItem(categoryData: state.categoryList[index]);
+            },
+          );
         },
       ),
     );
   }
 
-  Column _buildListItem() {
+  Column _buildListItem({required CategoryData categoryData}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           margin: const EdgeInsets.only(left: 13),
@@ -29,10 +37,10 @@ class CategoryListWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.black,
-            image: const DecorationImage(
-              fit: BoxFit.contain,
-              image: AssetImage(
-                'assets/images/logo.png',
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage(
+                categoryData.image,
               ),
             ),
           ),
@@ -40,12 +48,12 @@ class CategoryListWidget extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        const Text(
-          'Title',
+        Text(
+          categoryData.name,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             color: primaryFontColor,
-            fontWeight: FontWeight.w800,
+            fontWeight: FontWeight.w600,
             fontSize: 16,
           ),
         )

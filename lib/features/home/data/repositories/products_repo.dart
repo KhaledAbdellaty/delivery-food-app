@@ -1,7 +1,9 @@
-import 'package:shoping_e_commerce/features/products/domain/entities/product_entity.dart';
+
 import 'package:shoping_e_commerce/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:shoping_e_commerce/features/products/domain/repositories/products_repo.dart';
+
+import '../../domain/entities/product_entity.dart';
+import '../../domain/repositories/products_repo.dart';
 
 class ProductsRepoImpl extends ProductsRepo {
   @override

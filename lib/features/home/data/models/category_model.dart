@@ -1,4 +1,5 @@
-import 'package:shoping_e_commerce/features/products/domain/entities/category_entity.dart';
+
+import '../../domain/entities/category_entity.dart';
 
 class CategoryDataModel extends CategoryData {
   const CategoryDataModel({

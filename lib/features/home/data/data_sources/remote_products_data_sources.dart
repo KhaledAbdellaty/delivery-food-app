@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-abstract class ProductsRemoteDataSources {
+abstract class RemoteProductsDataSources {
   Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getCategories();
   Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
       getPopularProducts();
 }
 
-class ProductsRemoteDataSourcesImpl implements ProductsRemoteDataSources {
+class ProductsRemoteDataSourcesImpl implements RemoteProductsDataSources {
   ProductsRemoteDataSourcesImpl._();
   static final ProductsRemoteDataSourcesImpl instance =
       ProductsRemoteDataSourcesImpl._();

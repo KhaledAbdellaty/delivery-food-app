@@ -25,9 +25,11 @@ class UserInfoState extends Equatable {
   final UserData userData;
   final CartStatus? cartStatus;
   final FavoriteStatus? favoriteStatus;
-    const UserInfoState({
+  int count;
+  UserInfoState({
     this.userstatus = UserStatus.userLoading,
-    this.userData =  const UserData(
+    this.count = 1,
+    this.userData = const UserData(
       id: '',
       name: '',
       email: '',
@@ -52,12 +54,14 @@ class UserInfoState extends Equatable {
       ];
 
   UserInfoState copyWith({
+    int? count,
     UserStatus? userstatus,
     UserData? userData,
     CartStatus? cartStatus,
     FavoriteStatus? favoriteStatus,
   }) {
     return UserInfoState(
+        count: count ?? this.count,
         userData: userData ?? this.userData,
         userstatus: userstatus ?? this.userstatus,
         cartStatus: cartStatus ?? this.cartStatus,

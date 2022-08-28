@@ -51,7 +51,6 @@ class GoogleMapCubit extends Cubit<GoogleMapState> {
         placemarks.reversed.last.name.toString();
     Set<Marker> mark = {
       Marker(
-         
           markerId: MarkerId('current-location'),
           infoWindow: InfoWindow(title: address),
           position: LatLng(position.latitude, position.longitude))

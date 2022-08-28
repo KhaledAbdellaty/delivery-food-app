@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoping_e_commerce/core/constants/colors.dart';
 import 'package:shoping_e_commerce/core/constants/strings/routes.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_buttons.dart';
+import 'package:shoping_e_commerce/features/home/presentation/blocs/user_info/user_info_cubit.dart';
 
 import '../../../blocs/bottom_bar_navigator/bottom_bar_navigator_cubit.dart';
 
@@ -46,9 +47,13 @@ class MenuBodyItem extends StatelessWidget {
                     color: mainColor,
                   ),
                 ),
-                onTap: () => Navigator.pushNamed(context, detailsItemScreen,
-                    arguments:
-                        BlocProvider.of<BottomBarNavigatorCubit>(context))),
+                onTap: () => Navigator.pushNamed(
+                      context,
+                      detailsItemScreen,
+                      arguments: 
+                        BlocProvider.of<BottomBarNavigatorCubit>(context),
+                        
+                    )),
           )
         ],
       ),

@@ -29,11 +29,25 @@ class UserRepoImpl extends UserRepo {
       {required String imageUrl}) async {
     try {
       final userId = userLocalData.getCasheUserId();
-      final data = await UserRemoteDataSourcesImpl.instance
+       await UserRemoteDataSourcesImpl.instance
           .updateUserImage(imageUrl: imageUrl, userId: userId);
-      return Right(unit);
+      return const Right(unit);
     } on FirebaseException catch (e) {
       return Left(EmptyCacheFailure(messageError: e.code));
+    }
+  }
+
+  @override
+  Future<Unit> addToCart(
+      {required Map<String, dynamic> productMap,
+      }) async {
+    try {
+      final userId = userLocalData.getCasheUserId();
+      final data = await UserRemoteDataSourcesImpl.instance
+          .addToCart(product: productMap, userId: userId);
+      return Future.value(unit);
+    } catch (e) {
+      throw e;
     }
   }
 }
