@@ -10,10 +10,14 @@ import 'package:shoping_e_commerce/features/google_map/domain/uses_case/location
 import 'package:shoping_e_commerce/features/google_map/domain/uses_case/location_service_permission.dart';
 import 'package:shoping_e_commerce/features/google_map/presentation/blocs/cubit/google_map_cubit.dart';
 import 'package:shoping_e_commerce/features/google_map/services/repositiories/google_map_repo_impl.dart';
+import 'package:shoping_e_commerce/features/home/data/repositories/products_repo.dart';
 import 'package:shoping_e_commerce/features/home/data/repositories/user_repo_impl.dart';
+import 'package:shoping_e_commerce/features/home/domain/uses_cases/add_to_cart.dart';
+import 'package:shoping_e_commerce/features/home/domain/uses_cases/get_all_categories.dart';
 import 'package:shoping_e_commerce/features/home/domain/uses_cases/get_user_data.dart';
 import 'package:shoping_e_commerce/features/auth/domain/uses_case/sign_in_user.dart';
 import 'package:shoping_e_commerce/features/home/domain/uses_cases/update_user_image.dart';
+import 'package:shoping_e_commerce/features/home/presentation/blocs/products/products_cubit.dart';
 import 'package:shoping_e_commerce/features/home/presentation/blocs/user_info/user_info_cubit.dart';
 import 'package:shoping_e_commerce/features/pick_photo/bloc/pickphoto_bloc.dart';
 import 'package:shoping_e_commerce/features/pick_photo/data/repositories/pick_photo_repo_imp.dart';
@@ -22,6 +26,7 @@ import 'package:shoping_e_commerce/features/pick_photo/domain/uses_case/upload_i
 
 import '../features/auth/domain/uses_case/sign_out_user.dart';
 import '../features/auth/presentation/bloc/auth_bloc/auth_bloc.dart';
+import '../features/home/data/repositories/categories_repo.dart';
 import '../features/pick_photo/domain/uses_case/pick_image_from_gallery.dart';
 import 'network_checker_info/network_checker_info.dart';
 
@@ -37,8 +42,10 @@ Future<void> init() async {
       signOutUseCase: inj(),
     ),
   );
-  inj.registerFactory(() =>
-      UserInfoCubit(getUserDataUsesCase: inj(), updateUserImageUseCase: inj()));
+  inj.registerFactory(() => UserInfoCubit(
+      getUserDataUsesCase: inj(),
+      updateUserImageUseCase: inj(),
+      addToCartUseCase: inj()));
   inj.registerFactory(() => PickPhotoBloc(
       cameraUseCase: inj(),
       galleryUseCase: inj(),
@@ -49,12 +56,15 @@ Future<void> init() async {
       isLocationServiceEnabledUseCase: inj(),
       locationServicePermissionUseCase: inj()));
 
+  inj.registerFactory(() => ProductsCubit(inj()));
+
   ///UsesCases
 //user Uses Case
   inj.registerLazySingleton(() => CreateUseCase(authRepo: inj()));
   inj.registerLazySingleton(() => SignInUseCase(authRepo: inj()));
   inj.registerLazySingleton(() =>
       SignOutUseCase(authLocalDataSource: inj(), authRemoteDataSource: inj()));
+  inj.registerLazySingleton(() => AddToCartUseCase(userRepoImpl: inj()));
   inj.registerLazySingleton(() => GetUserDataUsesCase(userRepo: inj()));
   inj.registerLazySingleton(() => PickImageFromCameraUseCase(inj()));
   inj.registerLazySingleton(() => PickImageFromGalleryUseCase(inj()));
@@ -68,6 +78,9 @@ Future<void> init() async {
   inj.registerLazySingleton(
       () => LocationServicePermissionUseCase(googleMapRepoImpl: inj()));
 
+  inj.registerLazySingleton(
+      () => GetAllCategoriesUseCase(categoryRepoImpl: inj()));
+
   // Repositories
   //inj.registerFactory(() => AuthRepoImp(userLocalDataSourceImpl: inj()));
   inj.registerLazySingleton<AuthRepoImp>(
@@ -77,6 +90,7 @@ Future<void> init() async {
 
   inj.registerLazySingleton<PickPhotoRepoImpl>(() => PickPhotoRepoImpl());
   inj.registerLazySingleton<GoogleMapRepoImpl>(() => GoogleMapRepoImpl());
+  inj.registerLazySingleton<CategoryRepoImpl>(() => CategoryRepoImpl());
 
   // DataSources
   // inj.registerFactory(() => UserLocalDataSourceImpl(sharedPreferences: inj()));

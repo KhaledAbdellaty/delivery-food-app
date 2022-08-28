@@ -1,7 +1,8 @@
 import 'package:shoping_e_commerce/features/auth/domain/entities/user_entity.dart';
-import 'package:shoping_e_commerce/features/products/domain/entities/product_entity.dart';
 
-import '../../../products/data/models/product_model.dart';
+import '../../../home/data/models/product_model.dart';
+import '../../../home/domain/entities/product_entity.dart';
+
 
 class UserDataModel extends UserData {
   UserDataModel({

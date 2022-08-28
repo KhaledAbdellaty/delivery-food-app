@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../products/domain/entities/product_entity.dart';
+import '../../../home/domain/entities/product_entity.dart';
+
 
 class UserData extends Equatable {
   final String id;

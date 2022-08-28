@@ -7,15 +7,10 @@ import 'package:shoping_e_commerce/core/widgets/custom_buttons.dart';
 
 import '../../widgets/bottom_appbar_widget.dart';
 
-class DetailsItemScreen extends StatefulWidget {
-  const DetailsItemScreen({Key? key}) : super(key: key);
+class DetailsItemScreen extends StatelessWidget {
+  DetailsItemScreen({Key? key}) : super(key: key);
 
-  @override
-  State<DetailsItemScreen> createState() => _DetailsItemScreenState();
-}
-
-class _DetailsItemScreenState extends State<DetailsItemScreen> {
-  double count = 3.0;
+  double rating = 3.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +26,14 @@ class _DetailsItemScreenState extends State<DetailsItemScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const TabBarMaterialWidget(),
+    );
+  }
+
+  InkWell appBarActionButton() {
+    return InkWell(
+      borderRadius: BorderRadius.circular(50),
+      onTap: () {},
+      child: Image.asset('assets/icons/shopping-white_cart.png'),
     );
   }
 
@@ -52,14 +55,6 @@ class _DetailsItemScreenState extends State<DetailsItemScreen> {
           favoriteButtonWidget(context),
         ],
       )),
-    );
-  }
-
-  InkWell appBarActionButton() {
-    return InkWell(
-      borderRadius: BorderRadius.circular(50),
-      onTap: () {},
-      child: Image.asset('assets/icons/shopping-white_cart.png'),
     );
   }
 
@@ -246,6 +241,24 @@ class _DetailsItemScreenState extends State<DetailsItemScreen> {
                             color: mainColor,
                             padding: 10,
                             onPressed: () {},
+                                // BlocProvider.of<UserInfoCubit>(context)
+                                //     .addToCart(
+                                //         productData: ProductDataModel(
+                                //             id: '5',
+                                //             name: 'name',
+                                //             description: 'description',
+                                //             price: 12,
+                                //             discount: 2,
+                                //             rate: 3,
+                                //             countInStock: 5,
+                                //             category: CategoryDataModel(
+                                //                 id: '1',
+                                //                 name: 'ss',
+                                //                 image: 's'),
+                                //             brand: 'brand',
+                                //             images: ['images'],
+                                //             color: 'color'),
+                                //         count: 5),
                             text: 'Add to Cart',
                             icon: Image.asset(
                               'assets/icons/add-to-cart.png',
@@ -292,52 +305,8 @@ class _DetailsItemScreenState extends State<DetailsItemScreen> {
               fontSize: 17,
               fontWeight: FontWeight.w800),
         ),
-        Row(
-          children: [
-            SizedBox(
-              height: 30,
-              width: 52,
-              child: CusttomIconButton(
-                  color: mainColor,
-                  onPressed: () {},
-                  withText: false,
-                  text: '',
-                  icon: Image.asset('assets/icons/-.png')),
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Container(
-              width: 52,
-              height: 30,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                border: Border.all(
-                  color: mainColor,
-                  style: BorderStyle.solid,
-                  width: 1.5,
-                ),
-              ),
-              child: Center(
-                  child: Text(
-                '2',
-                style: TextStyle(color: mainColor),
-              )),
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            SizedBox(
-              height: 30,
-              width: 52,
-              child: CusttomIconButton(
-                  color: mainColor,
-                  onPressed: () {},
-                  withText: false,
-                  text: '',
-                  icon: Image.asset('assets/icons/+.png')),
-            )
-          ],
+        Counter(
+          count: 1,
         ),
       ],
     );
@@ -416,8 +385,7 @@ class _DetailsItemScreenState extends State<DetailsItemScreen> {
                 full: Image.asset('assets/icons/star-1.png'),
                 half: Container()),
             onRatingUpdate: (rating) {
-              count = rating;
-              setState(() {});
+              rating = rating;
             }),
         const SizedBox(
           height: 4,
@@ -425,13 +393,86 @@ class _DetailsItemScreenState extends State<DetailsItemScreen> {
         Padding(
           padding: const EdgeInsets.only(left: 6.0),
           child: Text(
-            '${count.toStringAsFixed(0)} Star Ratings',
+            '${rating.toStringAsFixed(0)} Star Ratings',
             style: const TextStyle(
               color: mainColor,
               fontSize: 16,
             ),
           ),
         ),
+      ],
+    );
+  }
+}
+
+class Counter extends StatefulWidget {
+  Counter({
+    required this.count,
+    Key? key,
+  }) : super(key: key);
+  int count;
+
+  @override
+  State<Counter> createState() => _CounterState();
+}
+
+class _CounterState extends State<Counter> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(
+          height: 30,
+          width: 52,
+          child: CusttomIconButton(
+              color: mainColor,
+              onPressed: () {
+                if (widget.count > 1) {
+                  widget.count -= 1;
+                  setState(() {});
+                }
+              },
+              withText: false,
+              text: '',
+              icon: Image.asset('assets/icons/-.png')),
+        ),
+        const SizedBox(
+          width: 5,
+        ),
+        Container(
+          width: 52,
+          height: 30,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            border: Border.all(
+              color: mainColor,
+              style: BorderStyle.solid,
+              width: 1.5,
+            ),
+          ),
+          child: Center(
+            child: Text(
+              '${widget.count}',
+              style: const TextStyle(color: mainColor),
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: 5,
+        ),
+        SizedBox(
+          height: 30,
+          width: 52,
+          child: CusttomIconButton(
+              color: mainColor,
+              onPressed: () {
+                widget.count += 1;
+                setState(() {});
+              },
+              withText: false,
+              text: '',
+              icon: Image.asset('assets/icons/+.png')),
+        )
       ],
     );
   }
