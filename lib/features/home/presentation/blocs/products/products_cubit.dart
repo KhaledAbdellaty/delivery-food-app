@@ -1,21 +1,46 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:shoping_e_commerce/features/home/domain/entities/category_entity.dart';
+import 'package:shoping_e_commerce/features/home/domain/entities/resturant_entity.dart';
 import 'package:shoping_e_commerce/features/home/domain/uses_cases/get_all_categories.dart';
+import 'package:shoping_e_commerce/features/home/domain/uses_cases/get_all_resturant.dart';
 
 part 'products_state.dart';
 
 class ProductsCubit extends Cubit<ProductsState> {
+   final GlobalKey<AnimatedListState> listKey =
+      GlobalKey<AnimatedListState>();
+
   final GetAllCategoriesUseCase getAllCategoriesUseCase;
-  ProductsCubit(this.getAllCategoriesUseCase) : super(ProductsState());
+  final GetAllResturantsUseCase getAllResturantsUseCase;
+  ProductsCubit(this.getAllCategoriesUseCase, this.getAllResturantsUseCase)
+      : super(ProductsState());
 
   getAllCategories() async {
     final ga = await getAllCategoriesUseCase();
     ga.fold(
         (failure) => emit(state.copyWith(productStatus: ProductStatus.error)),
-        (r) {
-      emit(state.copyWith(categoryList: r));
+        (categories) {
+      listKey.currentState?.insertItem(categories.length);
+      emit(state.copyWith(categoryList: categories));
       emit(state.copyWith(productStatus: ProductStatus.loaded));
     });
+  }
+
+  getAllResturants() async {
+    final resturants = await getAllResturantsUseCase();
+    resturants.fold(
+        (failure) => emit(state.copyWith(
+            resturantStatus: ResturantStatus.error,
+            message: failure.message)), (resturants) {
+      emit(state.copyWith(
+          resturantStatus: ResturantStatus.loaded, resturantData: resturants));
+    });
+  }
+
+  getData() async {
+    await getAllCategories();
+    await getAllResturants();
   }
 }

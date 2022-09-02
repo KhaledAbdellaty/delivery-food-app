@@ -10,10 +10,13 @@ import 'package:shoping_e_commerce/features/google_map/domain/uses_case/location
 import 'package:shoping_e_commerce/features/google_map/domain/uses_case/location_service_permission.dart';
 import 'package:shoping_e_commerce/features/google_map/presentation/blocs/cubit/google_map_cubit.dart';
 import 'package:shoping_e_commerce/features/google_map/services/repositiories/google_map_repo_impl.dart';
+import 'package:shoping_e_commerce/features/home/data/data_sources/remote_resturants_data_source.dart';
 import 'package:shoping_e_commerce/features/home/data/repositories/products_repo.dart';
+import 'package:shoping_e_commerce/features/home/data/repositories/resturant_repo.dart';
 import 'package:shoping_e_commerce/features/home/data/repositories/user_repo_impl.dart';
 import 'package:shoping_e_commerce/features/home/domain/uses_cases/add_to_cart.dart';
 import 'package:shoping_e_commerce/features/home/domain/uses_cases/get_all_categories.dart';
+import 'package:shoping_e_commerce/features/home/domain/uses_cases/get_all_resturant.dart';
 import 'package:shoping_e_commerce/features/home/domain/uses_cases/get_user_data.dart';
 import 'package:shoping_e_commerce/features/auth/domain/uses_case/sign_in_user.dart';
 import 'package:shoping_e_commerce/features/home/domain/uses_cases/update_user_image.dart';
@@ -56,7 +59,7 @@ Future<void> init() async {
       isLocationServiceEnabledUseCase: inj(),
       locationServicePermissionUseCase: inj()));
 
-  inj.registerFactory(() => ProductsCubit(inj()));
+  inj.registerFactory(() => ProductsCubit(inj(), inj()));
 
   ///UsesCases
 //user Uses Case
@@ -81,6 +84,9 @@ Future<void> init() async {
   inj.registerLazySingleton(
       () => GetAllCategoriesUseCase(categoryRepoImpl: inj()));
 
+  inj.registerLazySingleton(
+      () => GetAllResturantsUseCase(resturantRepoImpl: inj()));
+
   // Repositories
   //inj.registerFactory(() => AuthRepoImp(userLocalDataSourceImpl: inj()));
   inj.registerLazySingleton<AuthRepoImp>(
@@ -91,6 +97,8 @@ Future<void> init() async {
   inj.registerLazySingleton<PickPhotoRepoImpl>(() => PickPhotoRepoImpl());
   inj.registerLazySingleton<GoogleMapRepoImpl>(() => GoogleMapRepoImpl());
   inj.registerLazySingleton<CategoryRepoImpl>(() => CategoryRepoImpl());
+  inj.registerLazySingleton<ResturantRepoImpl>(
+      () => ResturantRepoImpl(remoteResturantDataSourceImpl: inj()));
 
   // DataSources
   // inj.registerFactory(() => UserLocalDataSourceImpl(sharedPreferences: inj()));
@@ -98,6 +106,9 @@ Future<void> init() async {
       () => AuthLocalDataSourceImpl(sharedPreferences: inj()));
   inj.registerLazySingleton<AuthRemoteDataSourcesImpl>(
       () => AuthRemoteDataSourcesImpl.instance);
+
+  inj.registerLazySingleton<RemoteResturantDataSourceImpl>(
+      () => RemoteResturantDataSourceImpl());
 
   // inj.registerLazySingleton<PostRemoteDataSource>(
   //     () => PostRemoteDataSourceImp(dio: inj()));

@@ -3,7 +3,8 @@ import 'package:shoping_e_commerce/core/constants/colors.dart';
 
 class CustomRatingWidget extends StatelessWidget {
   final bool showTextRating;
-  const CustomRatingWidget({Key? key,required this.showTextRating}) : super(key: key);
+  const CustomRatingWidget({Key? key, required this.showTextRating})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +24,15 @@ class CustomRatingWidget extends StatelessWidget {
         const SizedBox(
           width: 16,
         ),
-        showTextRating?Text(
-          '(124 Ratings)',
-          style: TextStyle(
-            color: placeholderColor,
-            fontSize: 16,
-          ),
-        ): Container()
+        showTextRating
+            ? Text(
+                '(124 Ratings)',
+                style: TextStyle(
+                  color: placeholderColor,
+                  fontSize: 16,
+                ),
+              )
+            : Container()
       ],
     );
   }
