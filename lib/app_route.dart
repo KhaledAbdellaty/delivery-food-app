@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoping_e_commerce/features/google_map/presentation/blocs/cubit/google_map_cubit.dart';
 import 'package:shoping_e_commerce/features/google_map/presentation/screens/google_map_screen.dart';
+import 'package:shoping_e_commerce/features/home/domain/entities/resturant_entity.dart';
 import 'package:shoping_e_commerce/features/home/presentation/blocs/bottom_bar_navigator/bottom_bar_navigator_cubit.dart';
 import 'package:shoping_e_commerce/features/home/presentation/blocs/user_info/user_info_cubit.dart';
 import 'package:shoping_e_commerce/features/home/presentation/screens/details_item_screen/details_item_screen.dart';
+import 'package:shoping_e_commerce/features/home/presentation/screens/home/all_popular_resturants_screen.dart';
 import 'package:shoping_e_commerce/features/home/presentation/screens/home_screen.dart';
+import 'package:shoping_e_commerce/features/home/presentation/screens/testResturantScreen.dart';
 import 'core/constants/strings/routes.dart';
 import 'core/injection_container.dart';
 import 'features/auth/presentation/bloc/auth_bloc/auth_bloc.dart';
@@ -42,8 +45,7 @@ class AppRoute {
         return MaterialPageRoute(
           builder: ((context) => MultiBlocProvider(providers: [
                 BlocProvider(create: (_) => BottomBarNavigatorCubit()),
-                BlocProvider(
-                    create: (_) => inj<ProductsCubit>()..getAllCategories()),
+                BlocProvider(create: (_) => inj<ProductsCubit>()..getData()),
                 BlocProvider<UserInfoCubit>(
                     create: (_) => inj<UserInfoCubit>()..getUserData())
               ], child: HomeScreen())),
@@ -59,6 +61,14 @@ class AppRoute {
               ], child: DetailsItemScreen())),
         );
 
+//Todo Remove the testing
+      case ResturantsScreen.resturantScreen:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider<ProductsCubit>(
+                  create: (context) => inj<ProductsCubit>()..getAllResturants(),
+                  child: const ResturantsScreen(),
+                ));
+
       case googleMapScreen:
         return MaterialPageRoute(
           builder: ((context) => MultiBlocProvider(
@@ -70,7 +80,12 @@ class AppRoute {
                 child: GoogleMapScreen(),
               )),
         );
-
+      case allPopularResturantsScreen:
+        final resturants = settings.arguments as List<ResturantData>;
+        return MaterialPageRoute(
+            builder: (context) => AllPopularResturantsScreen(
+                  resturants: resturants,
+                ));
       // case usersScreen:
       //   final user = settings.arguments as Users;
       //   return MaterialPageRoute(

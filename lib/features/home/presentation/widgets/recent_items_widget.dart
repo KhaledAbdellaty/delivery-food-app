@@ -58,8 +58,8 @@ class RecentItemsWidget extends StatelessWidget {
             SizedBox(
               height: 3,
             ),
-            CustomSubTitleResturantInfoWidget(
-                info: 'Café', category: 'Western Food'),
+            //  CustomSubTitleResturantInfoWidget(
+            //     info: 'Café', category: 'Western Food'),
             SizedBox(
               height: 3,
             ),

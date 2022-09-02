@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_app_bar.dart';
+import 'package:shoping_e_commerce/features/home/presentation/screens/testResturantScreen.dart';
 
 import '../../../../../core/constants/colors.dart';
 
@@ -19,7 +20,8 @@ class MoreSettingsBody extends StatelessWidget {
               child: Column(
             children: [
               buildListTile(
-                onTap: () => print('my payment'),
+                onTap: () => Navigator.pushNamed(
+                    context, ResturantsScreen.resturantScreen),
                 image: 'assets/icons/payment.png',
                 icon: 'assets/icons/arrow.png',
                 title: 'Payment Details',

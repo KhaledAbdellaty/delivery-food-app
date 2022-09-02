@@ -9,40 +9,47 @@ class CustomSubTitleResturantInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          info,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: placeholderColor,
-            fontSize: 16,
+    return SizedBox(
+      width: 162,
+      child: Row(
+        children: [
+          Text(
+            info,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: placeholderColor,
+              fontSize: 16,
+            ),
           ),
-        ),
-        const SizedBox(
-          width: 5,
-        ),
-        const Text(
-          '.',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            height: 0,
-            color: mainColor,
-            fontSize: 16,
+          const SizedBox(
+            width: 5,
           ),
-        ),
-        const SizedBox(
-          width: 5,
-        ),
-        Text(
-          category,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: placeholderColor,
-            fontSize: 16,
+          const Text(
+            '.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              height: 0,
+              color: mainColor,
+              fontSize: 16,
+            ),
           ),
-        ),
-      ],
+          const SizedBox(
+            width: 5,
+          ),
+          Expanded(
+            child: Text(
+              category,
+              textAlign: TextAlign.left,
+              maxLines: 1,
+              style: const TextStyle(
+                overflow: TextOverflow.ellipsis,
+                color: placeholderColor,
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
