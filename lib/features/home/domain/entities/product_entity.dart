@@ -15,7 +15,8 @@ class ProductData extends Equatable {
   final List<String> images;
   final String color;
 
-  const ProductData({
+   const ProductData({
+    
     required this.id,
     required this.name,
     required this.description,
@@ -43,4 +44,7 @@ class ProductData extends Equatable {
         images,
         color,
       ];
+
+      
+
 }

@@ -10,6 +10,7 @@ class CategoryData extends Equatable {
     required this.name,
     required this.image,
   });
+  
 
   @override
   List<Object?> get props => [
