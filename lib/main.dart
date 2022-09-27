@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shoping_e_commerce/app_route.dart';
 import 'package:shoping_e_commerce/core/bloc_observer.dart';
 import 'package:shoping_e_commerce/core/constants/theme.dart';
@@ -26,12 +27,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: appTheme,
-      onGenerateRoute: appRoute.generateRoute,
+    return ScreenUtilInit(
+      minTextAdapt: true,
+      splitScreenMode: true,
+      designSize: const Size(332.98, 789.17),
+      builder: (context, child) => MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: appTheme,
+        onGenerateRoute: appRoute.generateRoute,
+      ),
     );
   }
 }

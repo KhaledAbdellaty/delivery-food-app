@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/colors.dart';
 import '../constants/size_config.dart';
 
@@ -20,17 +20,17 @@ class FilledButton extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         width: SizeConfig.screenWidth! - 34,
-        height: 56,
+        height: 56.h,
         decoration: BoxDecoration(
           color: mainColor,
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(50.r),
         ),
         child: Center(
           child: Text(
             text,
             style: TextStyle(
                 color: Colors.white,
-                fontSize: textSize,
+                fontSize: textSize.sp,
                 fontFamily: 'Metropolis-Medium'),
           ),
         ),
@@ -52,19 +52,21 @@ class BorderButton extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         width: SizeConfig.screenWidth! - 34,
-        height: 56,
+        height: 56.h,
         decoration: BoxDecoration(
           border: Border.all(
             color: mainColor,
           ),
           color: Colors.transparent,
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(50.r),
         ),
         child: Center(
             child: Text(
           text,
-          style: const TextStyle(
-              color: mainColor, fontSize: 16, fontFamily: 'Metropolis-Medium'),
+          style: TextStyle(
+              color: mainColor,
+              fontSize: 16.sp,
+              fontFamily: 'Metropolis-Medium'),
         )),
       ),
     );
@@ -95,10 +97,10 @@ class CusttomIconButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(30),
       child: Container(
           width: SizeConfig.screenWidth! - 34,
-          height: 56,
+          height: 56.h,
           decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(50.r),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -112,9 +114,9 @@ class CusttomIconButton extends StatelessWidget {
               withText
                   ? Text(
                       text,
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontFamily: 'Metropolis-Medium'),
                     )
                   : Container(),
@@ -144,17 +146,17 @@ class CustomRoundedIconButton extends StatelessWidget {
       splashColor: primaryFontColor,
       child: Container(
         alignment: Alignment.center,
-        width: width,
-        height: height,
+        width: width.w,
+        height: height.h,
         decoration: BoxDecoration(
           color: Colors.white,
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.5),
-              spreadRadius: 0.1,
-              offset: Offset(2, 2),
-              blurRadius: 5,
+              spreadRadius: 0.1.r,
+              offset: Offset(2.r, 2.r),
+              blurRadius: 5.r,
             ),
           ],
         ),

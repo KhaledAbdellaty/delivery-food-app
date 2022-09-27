@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/colors.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -14,22 +14,22 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 10,
-        right: 10,
-        top: 15,
+      padding: EdgeInsets.only(
+        left: 10.r,
+        right: 10.r,
+        top: 15.r,
       ),
       child: Row(
         children: [
           back ? const Icon(Icons.arrow_back) : Container(),
-          const SizedBox(
-            width: 5,
+          SizedBox(
+            width: 5.w,
           ),
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
                 color: primaryFontColor,
-                fontSize: 24,
+                fontSize: 24.sp,
                 fontWeight: FontWeight.w400),
           ),
           Spacer(),

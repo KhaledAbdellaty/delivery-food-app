@@ -5,6 +5,7 @@ import 'package:shoping_e_commerce/core/widgets/custom_buttons.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_rating_widget.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_resturant_name_widget.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_subtitle_resturant_info_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OffersBody extends StatelessWidget {
   const OffersBody({Key? key}) : super(key: key);
@@ -16,11 +17,11 @@ class OffersBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomAppBar(title: 'Latest Offers'),
-          const SizedBox(
-            height: 16,
+          SizedBox(
+            height: 16.h,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: EdgeInsets.symmetric(horizontal: 16.0.r),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -28,12 +29,12 @@ class OffersBody extends StatelessWidget {
                   'Find discounts, Offers special meals and more!',
                   style: TextStyle(color: secondaryFontColor),
                 ),
-                const SizedBox(
-                  height: 22,
+                SizedBox(
+                  height: 22.h,
                 ),
                 SizedBox(
-                    width: 127,
-                    height: 25,
+                    width: 127.w,
+                    height: 25.h,
                     child: FilledButton(
                       onPressed: () {},
                       text: 'Check Offers',
@@ -55,7 +56,7 @@ class OffersBody extends StatelessWidget {
     return Expanded(
         child: ListView.builder(
             itemCount: 5,
-            padding:const EdgeInsets.only(top: 0, bottom: 70),
+            padding: const EdgeInsets.only(top: 0, bottom: 70),
             itemBuilder: (context, index) {
               return buildlistViewItemWidget(context);
             }));
@@ -86,7 +87,8 @@ class OffersBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CustomResturantNameWidget(resturantName: 'Café de Noires'),
+                  const CustomResturantNameWidget(
+                      resturantName: 'Café de Noires'),
                   Row(
                     children: [
                       CustomRatingWidget(showTextRating: true),

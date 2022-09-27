@@ -4,8 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoping_e_commerce/core/constants/colors.dart';
 import 'package:shoping_e_commerce/core/constants/strings/routes.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_buttons.dart';
-
+import 'package:shoping_e_commerce/core/widgets/custpm_snackbar.dart';
 import '../../widgets/bottom_appbar_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailsItemScreen extends StatelessWidget {
   DetailsItemScreen({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class DetailsItemScreen extends StatelessWidget {
 
   InkWell appBarActionButton() {
     return InkWell(
-      borderRadius: BorderRadius.circular(50),
+      borderRadius: BorderRadius.circular(50.r),
       onTap: () {},
       child: Image.asset('assets/icons/shopping-white_cart.png'),
     );
@@ -73,7 +74,7 @@ class DetailsItemScreen extends StatelessWidget {
     return Positioned(
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: 385,
+        height: 385.h,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -82,7 +83,7 @@ class DetailsItemScreen extends StatelessWidget {
               Colors.black.withOpacity(0.8),
               Colors.black.withOpacity(0),
             ],
-            stops: const [0, 0.6],
+            stops: [0, 0.6.r],
           ),
         ),
       ),
@@ -94,11 +95,11 @@ class DetailsItemScreen extends StatelessWidget {
       offset: Offset(0, MediaQuery.of(context).size.height / 2.7),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: 500,
-        decoration: const BoxDecoration(
+        height: 500.h,
+        decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(40),
-              topRight: Radius.circular(40),
+              topLeft: Radius.circular(40.r),
+              topRight: Radius.circular(40.r),
             ),
             color: Colors.white),
         child: Column(
@@ -106,7 +107,7 @@ class DetailsItemScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
+              padding: EdgeInsets.only(top: 20.r, left: 15.r, right: 15.r),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,15 +116,17 @@ class DetailsItemScreen extends StatelessWidget {
                     'Tandoori Chicken Pizza',
                     style: TextStyle(
                       color: primaryFontColor,
-                      fontSize: 22,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   ratingBar(context),
                   priceWidgetStack(
                     context,
-                    Offset(MediaQuery.of(context).size.width / 1.66,
-                        MediaQuery.of(context).size.height / -25),
+                    Offset(
+                      MediaQuery.of(context).size.width / 1.66.w,
+                      MediaQuery.of(context).size.height / -25.h,
+                    ),
                   ),
                   descriptionField(),
                 ],
@@ -145,22 +148,22 @@ class DetailsItemScreen extends StatelessWidget {
           'Description',
           style: TextStyle(
               color: primaryFontColor,
-              fontSize: 17,
+              fontSize: 17.sp,
               fontWeight: FontWeight.w800),
         ),
-        const SizedBox(
-          height: 2,
+        SizedBox(
+          height: 2.h,
         ),
         Text(
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare leo non mollis id cursus. Eu euismod faucibus in leo malesuada',
           style: TextStyle(
-              height: 1.9,
+              height: 1.9.h,
               color: secondaryFontColor,
-              fontSize: 14,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w400),
         ),
-        const SizedBox(
-          height: 12,
+        SizedBox(
+          height: 12.h,
         ),
       ],
     );
@@ -169,96 +172,100 @@ class DetailsItemScreen extends StatelessWidget {
   Expanded numbersAndTotalItems(BuildContext context) {
     return Expanded(
       child: ListView(
-        padding: const EdgeInsets.only(top: 0),
+        padding: EdgeInsets.only(top: 0.r),
         shrinkWrap: true,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15),
+            padding: EdgeInsets.only(left: 15.r, right: 15.r),
             child: counterItemWidget(),
           ),
-          const SizedBox(
-            height: 27,
+          SizedBox(
+            height: 27.h,
           ),
           SizedBox(
-            height: 171,
+            height: 171.h,
             width: MediaQuery.of(context).size.width,
             child: Stack(
               children: [
                 Container(
-                  height: 171,
-                  width: 97,
-                  decoration: const BoxDecoration(
+                  height: 171.h,
+                  width: 97.w,
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(50),
-                        bottomRight: Radius.circular(50)),
+                        topRight: Radius.circular(50.r),
+                        bottomRight: Radius.circular(50.r)),
                     color: mainColor,
                   ),
                 ),
                 Align(
                   alignment: Alignment.center,
                   child: Container(
-                    padding: const EdgeInsets.all(18),
-                    width: 277,
-                    height: 122,
+                    padding: EdgeInsets.all(18.r),
+                    width: 277.w,
+                    height: 122.h,
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
                             color: Colors.black.withOpacity(0.5),
-                            offset: const Offset(0, 1.5),
-                            blurRadius: 5),
+                            offset: Offset(0, 1.5.w),
+                            blurRadius: 5.r),
                         const BoxShadow(
                             color: mainColor,
                             offset: Offset(-1, 0),
                             blurRadius: 0),
                       ],
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                     ),
                     child: Column(
                       children: [
                         Text(
                           'Total Price',
-                          style:
-                              TextStyle(color: primaryFontColor, fontSize: 16),
+                          style: TextStyle(
+                              color: primaryFontColor, fontSize: 16.sp),
                         ),
-                        const SizedBox(
-                          height: 3,
+                        SizedBox(
+                          height: 3.h,
                         ),
                         Text(
                           'EGP 1500',
                           style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 21,
-                              color: primaryFontColor),
-                        ),
-                        const SizedBox(
-                          height: 8,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 21.sp,
+                            color: primaryFontColor,
+                          ),
                         ),
                         SizedBox(
-                          width: 157,
-                          height: 29,
+                          height: 8.h,
+                        ),
+                        SizedBox(
+                          width: 157.w,
+                          height: 29.h,
                           child: CusttomIconButton(
                             color: mainColor,
-                            padding: 10,
-                            onPressed: () {},
-                                // BlocProvider.of<UserInfoCubit>(context)
-                                //     .addToCart(
-                                //         productData: ProductDataModel(
-                                //             id: '5',
-                                //             name: 'name',
-                                //             description: 'description',
-                                //             price: 12,
-                                //             discount: 2,
-                                //             rate: 3,
-                                //             countInStock: 5,
-                                //             category: CategoryDataModel(
-                                //                 id: '1',
-                                //                 name: 'ss',
-                                //                 image: 's'),
-                                //             brand: 'brand',
-                                //             images: ['images'],
-                                //             color: 'color'),
-                                //         count: 5),
+                            padding: 10.r,
+                            onPressed: () => SnackBarMessage()
+                                .showSuccessMessage(
+                                    message: 'Chech Your Cart',
+                                    context: context),
+                            // BlocProvider.of<UserInfoCubit>(context)
+                            //     .addToCart(
+                            //         productData: ProductDataModel(
+                            //             id: '5',
+                            //             name: 'name',
+                            //             description: 'description',
+                            //             price: 12,
+                            //             discount: 2,
+                            //             rate: 3,
+                            //             countInStock: 5,
+                            //             category: CategoryDataModel(
+                            //                 id: '1',
+                            //                 name: 'ss',
+                            //                 image: 's'),
+                            //             brand: 'brand',
+                            //             images: ['images'],
+                            //             color: 'color'),
+                            //         count: 5),
                             text: 'Add to Cart',
                             icon: Image.asset(
                               'assets/icons/add-to-cart.png',
@@ -272,12 +279,12 @@ class DetailsItemScreen extends StatelessWidget {
                 ),
                 Transform.translate(
                   offset: Offset(
-                    MediaQuery.of(context).size.width / 1.25,
-                    MediaQuery.of(context).size.width / 5.9,
+                    MediaQuery.of(context).size.width / 1.25.h,
+                    MediaQuery.of(context).size.width / 5.9.w,
                   ),
                   child: CustomRoundedIconButton(
-                    width: 40,
-                    height: 40,
+                    width: 40.w,
+                    height: 40.h,
                     onTap: () {},
                     icon:
                         Image.asset('assets/icons/shopping-maincolor-cart.png'),
@@ -286,8 +293,8 @@ class DetailsItemScreen extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(
-            height: 70,
+          SizedBox(
+            height: 70.h,
           ),
         ],
       ),
@@ -358,7 +365,7 @@ class DetailsItemScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: -3,
+              top: -3.r,
               child: SvgPicture.asset(
                 'assets/icons/Add to favorites button1.svg',
               ),
@@ -387,16 +394,16 @@ class DetailsItemScreen extends StatelessWidget {
             onRatingUpdate: (rating) {
               rating = rating;
             }),
-        const SizedBox(
-          height: 4,
+        SizedBox(
+          height: 4.h,
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 6.0),
+          padding: EdgeInsets.only(left: 6.0.r),
           child: Text(
             '${rating.toStringAsFixed(0)} Star Ratings',
-            style: const TextStyle(
+            style: TextStyle(
               color: mainColor,
-              fontSize: 16,
+              fontSize: 16.sp,
             ),
           ),
         ),
@@ -422,8 +429,8 @@ class _CounterState extends State<Counter> {
     return Row(
       children: [
         SizedBox(
-          height: 30,
-          width: 52,
+          height: 30.h,
+          width: 52.w,
           child: CusttomIconButton(
               color: mainColor,
               onPressed: () {
@@ -436,18 +443,18 @@ class _CounterState extends State<Counter> {
               text: '',
               icon: Image.asset('assets/icons/-.png')),
         ),
-        const SizedBox(
-          width: 5,
+        SizedBox(
+          width: 5.w,
         ),
         Container(
-          width: 52,
-          height: 30,
+          width: 52.w,
+          height: 30.h,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(30.r),
             border: Border.all(
               color: mainColor,
               style: BorderStyle.solid,
-              width: 1.5,
+              width: 1.5.w,
             ),
           ),
           child: Center(
@@ -457,12 +464,12 @@ class _CounterState extends State<Counter> {
             ),
           ),
         ),
-        const SizedBox(
-          width: 5,
+        SizedBox(
+          width: 5.w,
         ),
         SizedBox(
-          height: 30,
-          width: 52,
+          height: 30.h,
+          width: 52.w,
           child: CusttomIconButton(
               color: mainColor,
               onPressed: () {

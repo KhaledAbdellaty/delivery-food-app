@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoping_e_commerce/core/constants/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomRatingWidget extends StatelessWidget {
   final bool showTextRating;
@@ -14,22 +15,22 @@ class CustomRatingWidget extends StatelessWidget {
           Icons.star_rounded,
           color: mainColor,
         ),
-        const SizedBox(
-          width: 5,
+        SizedBox(
+          width: 5.w,
         ),
         Text(
           '4.9',
-          style: TextStyle(color: mainColor, fontSize: 15),
+          style: TextStyle(color: mainColor, fontSize: 15.sp),
         ),
-        const SizedBox(
-          width: 16,
+        SizedBox(
+          width: 16.w,
         ),
         showTextRating
             ? Text(
                 '(124 Ratings)',
                 style: TextStyle(
                   color: placeholderColor,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                 ),
               )
             : Container()

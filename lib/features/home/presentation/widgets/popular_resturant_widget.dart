@@ -11,61 +11,35 @@ import 'package:shoping_e_commerce/features/home/presentation/widgets/popular_it
 
 import '../../../../core/constants/strings/routes.dart';
 import '../blocs/products/products_cubit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PopularResturantsWidget extends StatelessWidget {
-   PopularResturantsWidget({Key? key}) : super(key: key);
-   List<ResturantData> resturants = [];
+  PopularResturantsWidget({Key? key}) : super(key: key);
+  List<ResturantData> resturants = [];
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: EdgeInsets.symmetric(horizontal: 15.r),
           child: CustomHeadLineText(
             title: 'Popular Resturants',
-            onPressed: () => Navigator.pushNamed(context, allPopularResturantsScreen, arguments: resturants),
+            onPressed: () => Navigator.pushNamed(
+                context, allPopularResturantsScreen,
+                arguments: resturants),
           ),
         ),
-        const SizedBox(
-          height: 30,
-        ),
-        // const PopularItemContainerWidget(
-        //   resturantName: 'Minute by tuk tuk',
-        //   imageUrl: 'assets/images/onBoarding-1.png',
-        // ),
-        // const PopularItemContainerWidget(
-        //   resturantName: 'Minute by tuk tuk',
-        //   imageUrl: 'assets/images/onBoarding-1.png',
-        // ),
-        // const PopularItemContainerWidget(
-        //   resturantName: 'Minute by tuk tuk',
-        //   imageUrl: 'assets/images/onBoarding-1.png',
-        // ),
         SizedBox(
-            height: 858,
+          height: 30.h,
+        ),
+        SizedBox(
+            height: 858.h,
             child: BlocBuilder<ProductsCubit, ProductsState>(
               builder: (context, state) {
-                
                 if (state.resturantStatus == ResturantStatus.loading) {
                   return const LoadingWidget();
                 } else if (state.resturantStatus == ResturantStatus.loaded) {
                   resturants = state.resturantData;
-                  // return ListView.builder(
-                  //     shrinkWrap: true,
-                  //     padding: EdgeInsets.all(0),
-                  //     physics: NeverScrollableScrollPhysics(),
-                  //     itemCount: 3,
-                  //     itemBuilder: (context, index) {
-                  //       return PopularItemContainerWidget(
-                  //         resturantName: state.resturantData[index].businessname
-                  //             .capitalizeFirst!, // capitalizeFirst() from get package
-                  //         imageUrl: state.resturantData[index].image,
-                  //         slug: state.resturantData[index].slug,
-                  //         resturantType: state.resturantData[index]
-                  //             .restaurantType.capitalizeFirst!,
-                  //       );
-                  //     });
-
                   return AnimationLimiter(
                     child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
@@ -84,14 +58,14 @@ class PopularResturantsWidget extends StatelessWidget {
                                         const Duration(milliseconds: 1500),
                                     curve: Curves.fastLinearToSlowEaseIn,
                                     child: PopularItemContainerWidget(
-                                      resturantName:resturants[index]
+                                      resturantName: resturants[index]
                                           .businessname
                                           .capitalizeFirst!, // capitalizeFirst() from get package
-                                      imageUrl:
-                                          resturants[index].image,
-                                      slug:resturants[index].slug,
+                                      imageUrl: resturants[index].image,
+                                      slug: resturants[index].slug,
                                       resturantType: resturants[index]
-                                          .restaurantType.capitalizeFirst!,
+                                          .restaurantType
+                                          .capitalizeFirst!,
                                     ),
                                   ),
                                 ))),

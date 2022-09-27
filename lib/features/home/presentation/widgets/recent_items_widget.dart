@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_headline_text_widget.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_rating_widget.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_resturant_name_widget.dart';
-
-import '../../../../core/widgets/custom_subtitle_resturant_info_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RecentItemsWidget extends StatelessWidget {
   const RecentItemsWidget({Key? key}) : super(key: key);
@@ -15,16 +14,16 @@ class RecentItemsWidget extends StatelessWidget {
       child: Column(
         children: [
           CustomHeadLineText(title: 'Recent Items', onPressed: () {}),
-          const SizedBox(
-            height: 26,
+          SizedBox(
+            height: 26.h,
           ),
           _buildRecentItemsContainerWidget(),
-          const SizedBox(
-            height: 15,
+          SizedBox(
+            height: 15.h,
           ),
           _buildRecentItemsContainerWidget(),
-          const SizedBox(
-            height: 15,
+          SizedBox(
+            height: 15.h,
           ),
           _buildRecentItemsContainerWidget(),
         ],
@@ -37,33 +36,34 @@ class RecentItemsWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 75,
-          height: 75,
+          width: 75.w,
+          height: 75.h,
           decoration: BoxDecoration(
             color: Colors.black,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.r),
             image: const DecorationImage(
               image: AssetImage('assets/images/onBoarding-1.png'),
               fit: BoxFit.contain,
             ),
           ),
         ),
-        const SizedBox(
-          width: 22,
+        SizedBox(
+          width: 22.w,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            CustomResturantNameWidget(resturantName: 'Mulberry Pizza by Josh'),
+          children: [
+            const CustomResturantNameWidget(
+                resturantName: 'Mulberry Pizza by Josh'),
             SizedBox(
-              height: 3,
+              height: 3.h,
             ),
             //  CustomSubTitleResturantInfoWidget(
             //     info: 'Café', category: 'Western Food'),
             SizedBox(
-              height: 3,
+              height: 3.h,
             ),
-            CustomRatingWidget(showTextRating: true),
+            const CustomRatingWidget(showTextRating: true),
           ],
         )
       ],

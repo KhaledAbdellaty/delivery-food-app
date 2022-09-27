@@ -3,6 +3,7 @@ import 'package:shoping_e_commerce/core/constants/colors.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_app_bar.dart';
 import 'package:shoping_e_commerce/core/widgets/custom_searchbar_field.dart';
 import 'package:shoping_e_commerce/features/home/presentation/screens/menu/widgets/menu_item.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MenuBody extends StatelessWidget {
   const MenuBody({Key? key}) : super(key: key);
@@ -13,27 +14,27 @@ class MenuBody extends StatelessWidget {
       body: Column(
         children: [
           const CustomAppBar(title: 'Menu'),
-          const SizedBox(
-            height: 24,
+          SizedBox(
+            height: 24.h,
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 35),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 35.r),
             child: CustomSearchBarField(),
           ),
-          const SizedBox(
-            height: 30,
+          SizedBox(
+            height: 30.h,
           ),
           Expanded(
             child: SizedBox(
-              height: 485,
+              height: 485.h,
               width: MediaQuery.of(context).size.width,
               child: Stack(
                 children: [
                   leftSideWidget(),
-                  const Positioned(
-                      left: 20,
-                      top: 30,
-                      right: 10,
+                  Positioned(
+                      left: 20.r,
+                      top: 30.r,
+                      right: 10.r,
                       child: MenuBodyItem(cardShape: CardShape.circle)),
                   const Positioned(
                       left: 20,
