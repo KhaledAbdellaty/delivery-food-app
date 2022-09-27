@@ -8,6 +8,7 @@ import '../../../../../../core/widgets/custom_loading_widget.dart';
 import '../../../../../../core/widgets/custom_text.dart';
 import '../../../../../../core/widgets/custom_text_field.dart';
 import '../../../bloc/auth_bloc/auth_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginBody extends StatelessWidget {
   LoginBody({Key? key}) : super(key: key);
@@ -29,8 +30,8 @@ class LoginBody extends StatelessWidget {
               title: 'Login',
               subTitle: 'Add your details to login',
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             CustomTextField(
               controller: email,
@@ -41,8 +42,8 @@ class LoginBody extends StatelessWidget {
               hint: 'example@example.com',
               inputType: TextInputType.emailAddress,
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             CustomTextField(
               controller: password,
@@ -51,8 +52,8 @@ class LoginBody extends StatelessWidget {
               hint: 'Password',
               inputType: TextInputType.text,
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             BlocConsumer<AuthBloc, AuthState>(
               listener: (context, state) {
@@ -86,16 +87,16 @@ class LoginBody extends StatelessWidget {
                     });
               },
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             buildText(
                 context: context,
                 title: 'Forgot your password?',
                 nextTitle: '',
                 onTap: () {}),
-            const SizedBox(
-              height: 60,
+            SizedBox(
+              height: 60.h,
             ),
             buildText(
               context: context,
@@ -103,8 +104,8 @@ class LoginBody extends StatelessWidget {
               nextTitle: '',
               onTap: () {},
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             CusttomIconButton(
               color: const Color(0XFF367FC0),
@@ -116,8 +117,8 @@ class LoginBody extends StatelessWidget {
                 'assets/icons/facebook-letter-logo.png',
               ),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             CusttomIconButton(
               color: const Color(0XFFDD4B39),
@@ -131,8 +132,8 @@ class LoginBody extends StatelessWidget {
                 'assets/icons/google-plus-logo.png',
               ),
             ),
-            const SizedBox(
-              height: 100,
+            SizedBox(
+              height: 100.h,
             ),
             buildText(
                 context: context,
@@ -158,15 +159,17 @@ class LoginBody extends StatelessWidget {
         children: [
           Text(
             title!,
-            style: const TextStyle(color: secondaryFontColor, fontSize: 16),
+            style: TextStyle(color: secondaryFontColor, fontSize: 16.sp),
           ),
-          const SizedBox(
-            width: 5,
+          SizedBox(
+            width: 5.w,
           ),
           Text(
             nextTitle!,
-            style: const TextStyle(
-                fontFamily: 'Metropolis-Bold', fontSize: 16, color: mainColor),
+            style: TextStyle(
+                fontFamily: 'Metropolis-Bold',
+                fontSize: 16.sp,
+                color: mainColor),
           )
         ],
       ),

@@ -1,12 +1,13 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:shoping_e_commerce/core/constants/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomHeadLineText extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
-  const CustomHeadLineText({Key? key, required this.title,required this.onPressed}) : super(key: key);
+  const CustomHeadLineText(
+      {Key? key, required this.title, required this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,18 +16,18 @@ class CustomHeadLineText extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 20,
+          style: TextStyle(
+            fontSize: 20.sp,
             fontWeight: FontWeight.w500,
             color: primaryFontColor,
           ),
         ),
         InkWell(
           onTap: onPressed,
-          child: const Text(
+          child: Text(
             'View all',
             style: TextStyle(
-                color: mainColor, fontSize: 16, fontWeight: FontWeight.w400),
+                color: mainColor, fontSize: 16.sp, fontWeight: FontWeight.w400),
           ),
         )
       ],

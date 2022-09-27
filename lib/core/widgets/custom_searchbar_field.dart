@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoping_e_commerce/core/constants/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomSearchBarField extends StatelessWidget {
   const CustomSearchBarField({Key? key}) : super(key: key);
@@ -9,18 +10,18 @@ class CustomSearchBarField extends StatelessWidget {
     return Row(
       children: [
         Image.asset('assets/icons/search.png'),
-        const SizedBox(
-          width: 10,
+        SizedBox(
+          width: 10.w,
         ),
         Expanded(
             child: TextFormField(
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             border: InputBorder.none,
             focusedBorder: InputBorder.none,
             hintText: 'Search food',
             hintStyle: TextStyle(
               color: placeholderColor,
-              fontSize: 18,
+              fontSize: 18.sp,
               fontWeight: FontWeight.w400,
             ),
           ),

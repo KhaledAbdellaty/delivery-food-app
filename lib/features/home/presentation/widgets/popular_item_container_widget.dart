@@ -5,6 +5,7 @@ import 'package:shoping_e_commerce/core/widgets/custom_subtitle_resturant_info_w
 import '../../../../core/constants/size_config.dart';
 import '../../../../core/widgets/custom_loading_widget.dart';
 import '../../../../core/widgets/custom_rating_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PopularItemContainerWidget extends StatelessWidget {
   final String imageUrl;
@@ -25,7 +26,7 @@ class PopularItemContainerWidget extends StatelessWidget {
       children: [
         SizedBox(
           width: SizeConfig.screenWidth,
-          height: 200,
+          height: 200.h,
           child: CachedNetworkImage(
             imageUrl: imageUrl,
             fit: BoxFit.cover,
@@ -33,23 +34,22 @@ class PopularItemContainerWidget extends StatelessWidget {
           ),
         ),
         Container(
-          margin:
-              const EdgeInsets.only(top: 10, bottom: 5, right: 15, left: 15),
-          height: 70,
+          margin: EdgeInsets.only(top: 10.r, bottom: 5.r, left: 15.r),
+          height: 70.h,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomResturantNameWidget(resturantName: resturantName),
-              const SizedBox(
-                height: 8,
+              SizedBox(
+                height: 8.h,
               ),
               Row(
                 children: [
                   const CustomRatingWidget(
                     showTextRating: true,
                   ),
-                  const SizedBox(
-                    width: 10,
+                  SizedBox(
+                    width: 10.w,
                   ),
                   CustomSubTitleResturantInfoWidget(
                       info: resturantType, category: slug),

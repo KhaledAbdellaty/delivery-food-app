@@ -4,6 +4,7 @@ import '../../../../../../core/constants/colors.dart';
 import '../../../../../../core/constants/size_config.dart';
 import '../../../../../../core/constants/strings/routes.dart';
 import '../../../../../../core/widgets/custom_buttons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WelcomeBody extends StatelessWidget {
   const WelcomeBody({Key? key}) : super(key: key);
@@ -39,37 +40,37 @@ class WelcomeBody extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 100,
+            SizedBox(
+              height: 100.h,
             ),
             SizedBox(
               width: SizeConfig.screenWidth! - 52,
-              child: const Text(
+              child: Text(
                 'Discover the best foods from over 1,000 restaurants and fast delivery to your doorstep',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    height: 1.5,
-                    fontSize: 15,
+                    height: 1.5.h,
+                    fontSize: 15.sp,
                     //fontFamily: 'Metropolis-Medium',
                     color: secondaryFontColor),
               ),
             ),
-            const SizedBox(
-              height: 30,
+            SizedBox(
+              height: 30.h,
             ),
             FilledButton(
               text: 'Login',
               onPressed: () => Navigator.pushNamed(context, loginScreen),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             BorderButton(
               text: 'Create an Account',
               onPressed: () => Navigator.pushNamed(context, signUpScreen),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
           ],
         ),

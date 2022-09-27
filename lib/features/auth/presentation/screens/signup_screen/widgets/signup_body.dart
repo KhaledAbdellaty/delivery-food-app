@@ -7,6 +7,7 @@ import '../../../../../../core/widgets/custom_text.dart';
 import '../../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../../core/widgets/custpm_snackbar.dart';
 import '../../../bloc/auth_bloc/auth_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpBody extends StatelessWidget {
   SignUpBody({Key? key}) : super(key: key);
@@ -24,8 +25,8 @@ class SignUpBody extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthLoading) {
-            SnackBarMessage()
-                .showSuccessMessage(message: 'Please wait ...', context: context);
+            SnackBarMessage().showSuccessMessage(
+                message: 'Please wait ...', context: context);
           }
           if (state is ErrorCreateOrSignInUserState) {
             SnackBarMessage()
@@ -39,7 +40,7 @@ class SignUpBody extends StatelessWidget {
         child: Form(
           key: _key,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+            padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 8.r),
             child: ListView(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -48,8 +49,8 @@ class SignUpBody extends StatelessWidget {
                   title: 'Sign Up',
                   subTitle: 'Add your details to Sign Up',
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 20.h,
                 ),
                 CustomTextField(
                   controller: nameController,
@@ -58,8 +59,8 @@ class SignUpBody extends StatelessWidget {
                   hint: 'Name',
                   inputType: TextInputType.name,
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 20.h,
                 ),
                 CustomTextField(
                   controller: emailController,
@@ -68,8 +69,8 @@ class SignUpBody extends StatelessWidget {
                   hint: 'Email',
                   inputType: TextInputType.emailAddress,
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 20.h,
                 ),
                 CustomTextField(
                   controller: mobileController,
@@ -78,8 +79,8 @@ class SignUpBody extends StatelessWidget {
                   hint: 'Mobil No',
                   inputType: TextInputType.number,
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 20.h,
                 ),
                 CustomTextField(
                   controller: addressController,
@@ -88,8 +89,8 @@ class SignUpBody extends StatelessWidget {
                   hint: 'Address',
                   inputType: TextInputType.streetAddress,
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 20.h,
                 ),
                 CustomTextField(
                   controller: passwordController,
@@ -98,8 +99,8 @@ class SignUpBody extends StatelessWidget {
                   hint: 'Password',
                   inputType: TextInputType.emailAddress,
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 20.h,
                 ),
                 CustomTextField(
                   controller: confirmPassowrdController,
@@ -108,8 +109,8 @@ class SignUpBody extends StatelessWidget {
                   hint: 'Confirm Password',
                   inputType: TextInputType.emailAddress,
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 20.h,
                 ),
                 FilledButton(
                     text: 'Sign Up',
@@ -123,8 +124,8 @@ class SignUpBody extends StatelessWidget {
                         ),
                       );
                     }),
-                const SizedBox(
-                  height: 50,
+                SizedBox(
+                  height: 50.h,
                 ),
                 buildText(context),
               ],
@@ -138,18 +139,20 @@ class SignUpBody extends StatelessWidget {
       onTap: () => Navigator.pushReplacementNamed(context, loginScreen),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           Text(
             'Already have an Account?',
-            style: TextStyle(color: primaryFontColor, fontSize: 16),
+            style: TextStyle(color: primaryFontColor, fontSize: 16.sp),
           ),
           SizedBox(
-            width: 5,
+            width: 5.w,
           ),
           Text(
             'Login',
             style: TextStyle(
-                fontFamily: 'Metropolis-Bold', fontSize: 16, color: mainColor),
+                fontFamily: 'Metropolis-Bold',
+                fontSize: 16.sp,
+                color: mainColor),
           )
         ],
       ),

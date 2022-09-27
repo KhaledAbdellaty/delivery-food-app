@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoping_e_commerce/core/constants/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomSubTitleResturantInfoWidget extends StatelessWidget {
   final String info, category;
@@ -10,41 +11,41 @@ class CustomSubTitleResturantInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 162,
+      width: 162.w,
       child: Row(
         children: [
           Text(
             info,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               color: placeholderColor,
-              fontSize: 16,
+              fontSize: 16.sp,
             ),
           ),
-          const SizedBox(
-            width: 5,
+          SizedBox(
+            width: 2.w,
           ),
-          const Text(
+          Text(
             '.',
             textAlign: TextAlign.center,
             style: TextStyle(
               height: 0,
               color: mainColor,
-              fontSize: 16,
+              fontSize: 16.sp,
             ),
           ),
-          const SizedBox(
-            width: 5,
+          SizedBox(
+            width: 2.w,
           ),
           Expanded(
             child: Text(
               category,
               textAlign: TextAlign.left,
               maxLines: 1,
-              style: const TextStyle(
+              style: TextStyle(
                 overflow: TextOverflow.ellipsis,
                 color: placeholderColor,
-                fontSize: 16,
+                fontSize: 16.sp,
               ),
             ),
           ),

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoping_e_commerce/core/constants/colors.dart';
 import 'package:shoping_e_commerce/features/home/domain/entities/category_entity.dart';
 import 'package:shoping_e_commerce/features/home/presentation/blocs/products/products_cubit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoryListWidget extends StatelessWidget {
   const CategoryListWidget({Key? key}) : super(key: key);
@@ -32,11 +33,11 @@ class CategoryListWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          margin: const EdgeInsets.only(left: 13),
-          width: 80,
-          height: 90,
+          margin: EdgeInsets.only(left: 13.r),
+          width: 80.w,
+          height: 90.h,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.r),
             color: Colors.black,
           ),
           child: ClipRRect(
@@ -45,21 +46,21 @@ class CategoryListWidget extends StatelessWidget {
               imageUrl: categoryData.image,
               fit: BoxFit.cover,
             ),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.r),
           ),
         ),
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: 10.h,
         ),
         Text(
           categoryData.name,
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             color: primaryFontColor,
             fontWeight: FontWeight.w600,
-            fontSize: 16,
+            fontSize: 16.sp,
           ),
-        )
+        ),
       ],
     );
   }

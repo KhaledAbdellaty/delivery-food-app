@@ -7,6 +7,7 @@ import 'package:shoping_e_commerce/features/home/presentation/widgets/most_popul
 import 'package:shoping_e_commerce/features/home/presentation/widgets/popular_resturant_widget.dart';
 import 'package:shoping_e_commerce/features/home/presentation/widgets/recent_items_widget.dart';
 import '../../widgets/category_list_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({Key? key}) : super(key: key);
@@ -25,27 +26,27 @@ class HomeBody extends StatelessWidget {
             },
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8.0),
-            child: CustomSearchBarField(),
+            padding: EdgeInsets.symmetric(horizontal: 32.r, vertical: 8.0.r),
+            child: const CustomSearchBarField(),
           ),
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
-          CategoryListWidget(),
+          const CategoryListWidget(),
           SizedBox(
-            height: 40,
+            height: 40.h,
           ),
           PopularResturantsWidget(),
           SizedBox(
-            height: 40,
+            height: 40.h,
           ),
-          MostPopularResturantsWidget(),
+          const MostPopularResturantsWidget(),
           SizedBox(
-            height: 40,
+            height: 40.h,
           ),
           RecentItemsWidget(),
           SizedBox(
-            height: 100,
+            height: 100.h,
           ),
         ],
       ),
