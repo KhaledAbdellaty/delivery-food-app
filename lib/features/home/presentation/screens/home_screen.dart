@@ -10,30 +10,29 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomBarNavigatorCubit, BottomBarNabigatorState>(
-        builder: (context, state) {
-          return Scaffold(
-            // To set the floating action button in bottom when keyboard open
-            resizeToAvoidBottomInset: false,
-            /////////////////////////////////////////////////////////////////
-            extendBody: true,
-            floatingActionButton: FloatingActionButton(
-              backgroundColor: state.index == 2 ? mainColor : placeholderColor,
-              onPressed: () =>
-                  context.read<BottomBarNavigatorCubit>().navigateToScreen(2),
-              child: const Icon(Icons.home),
+      builder: (context, state) {
+        return Scaffold(
+          // To set the floating action button in bottom when keyboard open
+          resizeToAvoidBottomInset: false,
+          /////////////////////////////////////////////////////////////////
+          extendBody: true,
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: state.index == 2 ? mainColor : placeholderColor,
+            onPressed: () =>
+                context.read<BottomBarNavigatorCubit>().navigateToScreen(2),
+            child: const Icon(Icons.home),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          body: Padding(
+            padding: const EdgeInsets.only(
+              top: 65,
             ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            body: Padding(
-              padding: const EdgeInsets.only(
-                top: 65,
-              ),
-              child: state.screens[state.index]['body'],
-            ),
-            bottomNavigationBar: const TabBarMaterialWidget(),
-          );
-        },
-      );
-   
+            child: state.screens[state.index]['body'],
+          ),
+          bottomNavigationBar: const TabBarMaterialWidget(),
+        );
+      },
+    );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoping_e_commerce/core/widgets/custpm_snackbar.dart';
-
 import '../../../../../../core/constants/colors.dart';
 import '../../../../../../core/constants/strings/routes.dart';
 import '../../../../../../core/widgets/custom_buttons.dart';
@@ -39,8 +38,8 @@ class LoginBody extends StatelessWidget {
               onSaved: (value) {
                 email.text = value;
               },
-              hint: 'Your Email',
-              inputType: TextInputType.name,
+              hint: 'example@example.com',
+              inputType: TextInputType.emailAddress,
             ),
             const SizedBox(
               height: 20,
@@ -50,7 +49,7 @@ class LoginBody extends StatelessWidget {
               secure: true,
               onSaved: (value) {},
               hint: 'Password',
-              inputType: TextInputType.emailAddress,
+              inputType: TextInputType.text,
             ),
             const SizedBox(
               height: 20,
